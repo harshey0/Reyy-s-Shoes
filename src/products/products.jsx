@@ -2,14 +2,13 @@
 import "../styles/products.css";
 import Card from "./card";
 
-import {dataa} from "../App";
 
-export default function Products() {
+export default function Products(props) {
   return (
    <section className="card-container">
 
   
-{dataa.map((data)=><Card img={data.img} 
+{props.data.map((data)=><Card img={data.img} 
 title={data.title}
 star={data.star}
 reviews={data.reviews}

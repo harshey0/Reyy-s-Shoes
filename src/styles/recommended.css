@@ -12,3 +12,6 @@
 .recommended{
     margin-left: 15rem;
 }
+.button:hover{
+    background-color: #ccc;
+}

@@ -1,11 +1,17 @@
 
-import '../styles/nav.css'
+import "../styles/nav.css";
 
-export default function Navigation() {
+export default function Navigation(props) {
+
+
+function search(){
+ props.onAdd(document.getElementById("val").value);
+}
+
   return (
   <nav>
   <div className="nav-container">
-    <input type="text" className="input-search" placeholder="Enter your search shoes." />
+    <input type="text" className="input-search" id="val" onChange={search} onKeyDown={search} placeholder="Enter your search shoes." />
     </div>
     
     <div className="profile-container">
