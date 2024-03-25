@@ -8,29 +8,59 @@ import { useState } from "react";
 
 function App(){
     const [dataa,newdata] = useState(data);
-    const [dataa2,newdata2] = useState(data);
-    const [dataa3,newdata3] = useState(dataa);
+
+   
 
 function change1(title)
 {
-    const filter=dataa2.filter(item=>item.title.toLowerCase().startsWith(title.toLowerCase()));
+    var filter=data.filter(item=>item.title.toLowerCase().startsWith(title.toLowerCase()));
     newdata(filter);
-    newdata3(filter);
 }
 
 function change2(name)
 {
     var filter=[];
-    if(name=="All Products")
+    if(name==="All Products")
     filter=data;
     else
-    filter=dataa3.filter(item=>name==item.company);
+    filter=data.filter(item=>name===item.company);
     newdata(filter);
-    newdata2(filter);
+    
 }
 
+function change3(name1,name2)
+{
+
+
+    var filter=[];
+    const check = ["$0 - 50","$50 - 100","$100 - 150","Over $150"];
+    if (check.includes(name2)) {
+        const index = check.indexOf(name2);
+        switch (index) {
+            case 0:
+                filter=data.filter(item=>item.newPrice>=0&&item.newPrice<50);
+                break;
+            case 1:
+                filter=data.filter(item=>item.newPrice>=50&&item.newPrice<100);
+                break;
+            case 2:
+                filter=data.filter(item=>item.newPrice>=100&&item.newPrice<150);
+                break;
+            case 3:
+                filter=data.filter(item=>item.newPrice>=150);
+                break;
+    }}
+    else if(name2==="All")
+    filter=data;
+    else
+    filter=data.filter(item=>name2.toLowerCase()===item[name1.toLowerCase()].toLowerCase());
+    newdata(filter);
+}
+    
+      
+
 return(<div>
-<Sidebar />
+<Sidebar onSidepress={change3}/>
 <Navigation onAdd={change1} />
 <Recommended onPress={change2}/>
 
