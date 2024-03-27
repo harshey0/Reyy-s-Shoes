@@ -1,0 +1,21 @@
+*{
+    font-family: sans-serif;
+    padding: 0;
+    margin: 0;
+}
+.icons {
+
+    text-decoration: none;
+    color: rgb(97,97,97);
+    font-size: 35px;
+}
+.input-search{
+    height: 30px;
+    width: 220px;
+    padding: 6px 10px;
+    background-color: white;
+    outline: auto;
+    outline: none;
+    border: none;
+    position: relative;
+}

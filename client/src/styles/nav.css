@@ -1,0 +1,61 @@
+nav{
+    display: flex;
+    align-items: center;
+    padding :20px;
+    border-bottom: 2px solid #c9c9c9;
+    margin-bottom: 20px;
+    height: 43px;
+    background-color: #f3f3f3;
+    position: fixed;
+    top: 0;
+}
+.icon{
+    margin: 10px 0px 15px 0px;
+    color: rgb(69, 67, 67);
+    text-decoration: none;
+    font-weight: 900;
+    font-size: larger;
+}
+.input-search{
+    margin-left: 10.3rem;
+    font-size: 15px;
+}
+.nav-container{
+    display: flex;
+}
+.profile-container{
+    display: flex;
+    margin-left: 28.5rem;
+}
+
+.profile-sec{
+    display: flex;
+    align-items: center;
+    font-size: large;
+    padding: 0px 20px 0px 20px;
+    color: black;
+    text-decoration: none;
+}
+.profile-sec:hover{
+    cursor: pointer;
+}
+.dropdown{
+
+    display: inline-block;
+    position: relative;
+
+}
+.dropdown-btn{
+    
+    display: flex;
+    flex-direction: column;
+    background-color: #f3f3f3;
+}
+  
+  .drop{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+  }
+  
