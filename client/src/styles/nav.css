@@ -8,6 +8,7 @@ nav{
     background-color: #f3f3f3;
     position: fixed;
     top: 0;
+    width: 100%;
 }
 .icon{
     margin: 10px 0px 15px 0px;
@@ -25,7 +26,8 @@ nav{
 }
 .profile-container{
     display: flex;
-    margin-left: 28.5rem;
+    margin-left: auto;
+    margin-right: 20px;
 }
 
 .profile-sec{

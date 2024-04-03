@@ -3,6 +3,10 @@ import Navigation from "./navigation/navigation";
 import Products from "./products/products";
 import Recommended from "./recommended/recommended";
 import Sidebar from "./sidebar/sidebar";
+import Signin from "./pages/signin";
+import Signup from "./pages/signup";
+import Cart from "./pages/cart"
+import Profile from "./pages/profile";
 import data from "./db/data"
 import { useState } from "react";
 import { BrowserRouter , Route, Routes} from 'react-router-dom';
@@ -50,6 +54,7 @@ function change3(name1,name2)
             case 3:
                 filter=data.filter(item=>item.newPrice>=150);
                 break;
+                default: filter = data;
     }}
     else if(name2==="All")
     filter=data;
@@ -62,17 +67,29 @@ function change3(name1,name2)
 
 return(
     <BrowserRouter>
+
+        <Navigation onAdd={change1}  />
         <Routes> 
+
         <Route path="/" element={ <>
         <Sidebar onSidepress={change3} />
      
 
-       <Navigation onAdd={change1}  />
        
          <Recommended onPress={change2}  />
         
          <Products data={dataa}/> </>} />
-          <Route path="*" element={<></>} />
+         <Route path="/signin" element={<> <Signin/> </>} />
+         <Route path="/signup" element={<> <Signup/> </>} />
+         <Route path="/cart" element={<> <Cart/> </>} />
+         <Route path="/profile" element={<> <Profile/> </>} />
+          <Route path="*" element={<> <Sidebar onSidepress={change3} />
+     
+
+       
+     <Recommended onPress={change2}  />
+    
+     <Products data={dataa}/></>} />
         </Routes>
     </BrowserRouter>
     );
