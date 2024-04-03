@@ -12,7 +12,7 @@ export default function Card(props) {
   <h3 className="card-title">{props.title}</h3>
   <section className="card-reviews">
   
- {stars}
+      {stars}
   <span className="total-reviews">{props.reviews}</span>
   </section>
   <section className="card-price">

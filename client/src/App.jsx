@@ -7,12 +7,23 @@ import Signin from "./pages/signin";
 import Signup from "./pages/signup";
 import Cart from "./pages/cart"
 import Profile from "./pages/profile";
-import data from "./db/data"
-import { useState } from "react";
+import axios from "axios";
+import { useState, useEffect } from "react";
 import { BrowserRouter , Route, Routes} from 'react-router-dom';
 
 function App(){
-    const [dataa,newdata] = useState(data);
+    const [dataa,newdata] = useState([]);
+    const [data,newdat] = useState([]);
+    useEffect(()=>{async function fetch(){
+        try{
+         const res = await axios.get("/api/data");
+         console.log(res.data);
+        newdata(res.data);
+        newdat(res.data);
+    }   catch (error) {
+            console.error('Error fetching data:', error);
+        }} fetch();
+    },[]);
 
    
 
