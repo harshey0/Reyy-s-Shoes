@@ -2,8 +2,10 @@ import express  from "express";
 import dotenv from "dotenv";
 import data from "./db/data.js";
 import cors from "cors";
+import connectDb , {disconnectDb} from "./config/db.js";
 
 dotenv.config();
+connectDb();
 const PORT =process.env.PORT;
 
 
