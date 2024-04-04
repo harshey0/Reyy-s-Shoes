@@ -17,7 +17,6 @@ function App(){
     useEffect(()=>{async function fetch(){
         try{
          const res = await axios.get("https://reyy-s-shoes.onrender.com/api/data");
-         console.log(res.data);
         newdata(res.data);
         newdat(res.data);
     }   catch (error) {
