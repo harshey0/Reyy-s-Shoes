@@ -68,7 +68,7 @@ export default function Signup() {
               fullWidth
               type="password"
               label="Confirm Password"
-              id="password"
+              id="confirm-password"
               value={cpassword}
               onChange={cpchange}
               />
