@@ -11,6 +11,7 @@ const PORT =process.env.PORT;
 
 
 const app = express ();
+app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cors());
 app.listen(PORT,()=>{console.log(`running on port ${PORT}`)});
@@ -18,4 +19,4 @@ app.listen(PORT,()=>{console.log(`running on port ${PORT}`)});
 app.get("/",(req,res)=> res.send("api is running"));
 app.use("/api", dataRoute);
 
-app.use("/api/login",userRoute);
+app.use("/api",userRoute);
