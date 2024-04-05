@@ -12,6 +12,8 @@ catch(error)
     res.json("error fetching products ");
     console.error("error fetching products :", error);
 }});
+
+
 router.get("/users",async(req,res)=> {try
 {
     res.json(await User.find());
@@ -21,14 +23,6 @@ catch(error)
     res.json("error fetching products ");
     console.error("error fetching products :", error);
 }});
-router.post("/users",async(req,res)=> {try
-{
-    res.json(await User.find());
-}
-catch(error)
-{
-    res.json("error fetching products ");
-    console.error("error fetching products :", error);
-}});
+
 
 export default router;
