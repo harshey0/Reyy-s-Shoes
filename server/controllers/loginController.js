@@ -1,6 +1,6 @@
 import User from "../models/userModel.js";
 import bcrypt from "bcryptjs";
-import generateToken from "../utils/generateToken.js";
+import generateToken , {destroyToken} from "../utils/Token.js";
 
 export default async function loginUser(req,res)
 {
@@ -35,3 +35,8 @@ export default async function loginUser(req,res)
             }
       
 };
+
+export function logoutUser(req,res)
+{
+    destroyToken(req,res);
+}

@@ -1,5 +1,5 @@
 import User from "../models/userModel.js";
-import generateToken from "../utils/generateToken.js";
+import generateToken from "../utils/Token.js";
 import bcryptjs from "bcryptjs";
 
 export default async function loginUser(req,res)
@@ -21,11 +21,11 @@ export default async function loginUser(req,res)
                     
                 const pass = bcryptjs.hashSync(password,10)
                 
-                const user = {username:username,email:email,password:pass};
-                await User.insertMany(user);
-                console.log("yes");
+                let user = {username:username,email:email,password:pass};
+                await User.create(user);
+                user= await User.findOne({username});
+                console.log("new user added");
                 
-              
                 generateToken(res,user._id);
                  res.json({_id : user._id , username : user.username, email:user.email , isAdmin:user.isAdmin});
             
