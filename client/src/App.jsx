@@ -16,7 +16,7 @@ function App(){
     const [data,newdat] = useState([]);
     useEffect(()=>{async function fetch(){
         try{
-         const res = await axios.get("https://reyy-s-shoes.onrender.com/data/products");
+         const res = await axios.get("/data/products");
         newdata(res.data);
         newdat(res.data);
     }   catch (error) {
