@@ -10,13 +10,14 @@ import Profile from "./pages/profile";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { BrowserRouter , Route, Routes} from 'react-router-dom';
+const URL = process.env.REACT_APP_URL;
 
 function App(){
     const [dataa,newdata] = useState([]);
     const [data,newdat] = useState([]);
     useEffect(()=>{async function fetch(){
         try{
-         const res = await axios.get("/data/products");
+         const res = await axios.get(`${URL}/data/products`);
         newdata(res.data);
         newdat(res.data);
     }   catch (error) {
