@@ -7,7 +7,7 @@ import { toast  } from 'react-toastify';
 import axios from "axios";
 
 
-const URL = process.env.REACT_APP_URLD;
+const URL = process.env.REACT_APP_URL;
 export default function Navigation(props) {
 
   const [check,newcheck]=useState(false);

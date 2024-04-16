@@ -12,7 +12,7 @@ import { useState, useEffect } from "react";
 import { BrowserRouter , Route, Routes, Navigate} from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-const URL = process.env.REACT_APP_URLD;
+const URL = process.env.REACT_APP_URL;
 
 function App(){
     const [dataa,newdata] = useState([]);
