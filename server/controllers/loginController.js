@@ -22,9 +22,10 @@ export default async function loginUser(req,res)
                 
                 if(passwordMatch)
                {
-
+                res.setHeader('Access-Control-Allow-Origin', 'https://reyy-s-shoes.vercel.app');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
                 generateToken(res,user.username,user.isAdmin);
-                
+
                 return res.send("Login Successful");
             }
                 else 
@@ -41,6 +42,8 @@ export default async function loginUser(req,res)
 
 export function logoutUser(req,res)
 {
+    res.setHeader('Access-Control-Allow-Origin', 'https://reyy-s-shoes.vercel.app');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
     destroyToken(res);
     return res.send("done");
 }
