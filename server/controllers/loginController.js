@@ -24,7 +24,7 @@ export default async function loginUser(req,res)
                {
 
                 generateToken(res,user.username,user.isAdmin);
-                // res.json({_id : user._id , username : user.username, email:user.email , isAdmin:user.isAdmin});
+                
                 return res.send("Login Successful");
             }
                 else 

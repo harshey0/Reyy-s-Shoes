@@ -51,7 +51,7 @@ async function handle(event)
     if(response.data=== "Login Successful")
     {props.set();
     navigate("/");}
-    // console.log(localStorage.getItem('token'))
+    console.log("token in signin.jsx ",localStorage.getItem('token'))
     
     
 
