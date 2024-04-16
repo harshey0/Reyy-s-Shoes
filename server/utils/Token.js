@@ -26,20 +26,22 @@ const token = jwt.sign({username,admin},process.env.JWT_SECRET , {
 
           export function verifyToken(req, res){
                 const token =  req.headers.authorization?.split(' ')[1];
-                
                 if (!token) {
                   return res.send("no");
                 }
               
                 try {
                   const decoded = jwt.verify(token, process.env.JWT_SECRET);
-                  req.user = decoded;
                   
                   const currentTimeInSeconds = Math.floor(Date.now() / 1000);
-                  if (decoded.exp && currentTimeInSeconds >= decoded.exp * 1000)
-                  return res.json({ message: 'yes', decoded });
+                  if (decoded.exp && currentTimeInSeconds >= decoded.exp)
+                  return res.send("expired");
+                  else
+
+                  return res.send({message:"yes",decoded});
 
                 } catch (error) {
+
                   return res.send("no");
                 }
               };

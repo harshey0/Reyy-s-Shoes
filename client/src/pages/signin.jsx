@@ -49,6 +49,7 @@ async function handle(event)
     tokenstore();
     setemsg(response.data);
     if(response.data=== "Login Successful")
+    props.set();
     navigate("/");
     // console.log(localStorage.getItem('token'))
     

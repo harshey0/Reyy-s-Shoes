@@ -17,9 +17,10 @@ const URL = process.env.REACT_APP_URLD;
 function App(){
     const [dataa,newdata] = useState([]);
     const [data,newdat] = useState([]);
-    const [login,newlogin] = useState(set());
-    const [isAdmin,newadmin] = useState(true);
-    const [username,newusername] = useState(true);
+    const [login,newlogin] = useState(false);
+    const [isAdmin,newadmin] = useState(false);
+    const [username,newusername] = useState("");
+    const [loading, setLoading] = useState(true);
    
     
     useEffect(()=>{async function fetch(){
@@ -29,35 +30,40 @@ function App(){
         newdat(res.data);
     }   catch (error) {
             console.error('Error fetching data:', error);
-        }} fetch();
+        }} 
+        async function set(){
+            newlogin(await session());
+            setLoading(false);
+        }; 
+        
+        fetch(); set(); 
     },[]);
    
-    async function set()
-    {
-        await session();
-    }
+   
+   
 
-       async function session(){
+    async function session(){
         try{
          const res = await axios.post(`${URL}/user/verify`,{},{
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}` }
             });
-            console.log("response:",res.data);
-         if(res.data==="yes")
-         {console.log("response:",res.data);
-            newlogin(true);
+         if(res.data.message && res.data.message==="yes")
+         {
+            
             const {username , admin } = res.data.decoded;
+            console.log("yes",username, admin)
             newadmin(admin);
             newusername(username);
+           return (true);
         }
             else
-            newlogin(false);
+            {
+                return (false);}
        
     }   catch (error) {
-        newlogin(false);
-        }} 
-
+        return (false);
+        }}
    
 
 function change1(title)
@@ -107,18 +113,21 @@ function change3(name1,name2)
     newdata(filter);
 }
     
-      
-
+if (loading) {
+    return <div>Loading...</div>; 
+}
+else
 return(
+    
     <BrowserRouter>
 
-        <Navigation onAdd={change1} logout={()=>newlogin(false)} is={login} admin={isAdmin}/>
+        <Navigation onAdd={change1} logout={()=>newlogin(false)} is={login} admin={isAdmin} name={username}/>
         <ToastContainer />
         <Routes> 
       
 
         <Route path="/" element={ 
-           
+          
              login ?(<><Sidebar onSidepress={change3} />
      
 
@@ -128,7 +137,7 @@ return(
          <Products data={dataa}/></>) :<Navigate to="/signin" />}/>
 
 
-         <Route path="/signin" element={<> <Signin login={()=>newlogin(true)}/> </>} />
+         <Route path="/signin" element={<> <Signin login={()=>newlogin(true)} set={session}/> </>} />
          <Route path="/signup" element={<> <Signup/> </>} />
          <Route path="/cart" element={<> <Cart/> </>} />
          <Route path="/profile" element={<> <Profile/> </>} />
