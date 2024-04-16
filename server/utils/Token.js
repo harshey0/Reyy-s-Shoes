@@ -14,9 +14,6 @@ const token = jwt.sign({username,admin},process.env.JWT_SECRET , {
             };
  export function destroyToken(res){
 
-  res.setHeader('Access-Control-Allow-Origin', 'https://reyy-s-shoes.vercel.app/');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-
                res.cookie('jwt',"fake",{
                    httpOnly:false,
                    secure:true,
