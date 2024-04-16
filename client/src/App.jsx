@@ -9,12 +9,19 @@ import Cart from "./pages/cart"
 import Profile from "./pages/profile";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { BrowserRouter , Route, Routes} from 'react-router-dom';
-const URL = process.env.REACT_APP_URL;
+import { BrowserRouter , Route, Routes, Navigate} from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+const URL = process.env.REACT_APP_URLD;
 
 function App(){
     const [dataa,newdata] = useState([]);
     const [data,newdat] = useState([]);
+    const [login,newlogin] = useState(set());
+    const [isAdmin,newadmin] = useState(true);
+    const [username,newusername] = useState(true);
+   
+    
     useEffect(()=>{async function fetch(){
         try{
          const res = await axios.get(`${URL}/data/products`);
@@ -24,6 +31,32 @@ function App(){
             console.error('Error fetching data:', error);
         }} fetch();
     },[]);
+   
+    async function set()
+    {
+        await session();
+    }
+
+       async function session(){
+        try{
+         const res = await axios.post(`${URL}/user/verify`,{},{
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}` }
+            });
+            console.log("response:",res.data);
+         if(res.data==="yes")
+         {console.log("response:",res.data);
+            newlogin(true);
+            const {username , admin } = res.data.decoded;
+            newadmin(admin);
+            newusername(username);
+        }
+            else
+            newlogin(false);
+       
+    }   catch (error) {
+        newlogin(false);
+        }} 
 
    
 
@@ -79,28 +112,27 @@ function change3(name1,name2)
 return(
     <BrowserRouter>
 
-        <Navigation onAdd={change1}  />
+        <Navigation onAdd={change1} logout={()=>newlogin(false)} is={login} admin={isAdmin}/>
+        <ToastContainer />
         <Routes> 
+      
 
-        <Route path="/" element={ <>
-        <Sidebar onSidepress={change3} />
+        <Route path="/" element={ 
+           
+             login ?(<><Sidebar onSidepress={change3} />
      
 
        
          <Recommended onPress={change2}  />
         
-         <Products data={dataa}/> </>} />
-         <Route path="/signin" element={<> <Signin/> </>} />
+         <Products data={dataa}/></>) :<Navigate to="/signin" />}/>
+
+
+         <Route path="/signin" element={<> <Signin login={()=>newlogin(true)}/> </>} />
          <Route path="/signup" element={<> <Signup/> </>} />
          <Route path="/cart" element={<> <Cart/> </>} />
          <Route path="/profile" element={<> <Profile/> </>} />
-          <Route path="*" element={<> <Sidebar onSidepress={change3} />
-     
-
-       
-     <Recommended onPress={change2}  />
-    
-     <Products data={dataa}/></>} />
+        
         </Routes>
     </BrowserRouter>
     );

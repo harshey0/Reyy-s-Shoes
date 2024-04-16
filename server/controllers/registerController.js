@@ -7,15 +7,17 @@ export default async function loginUser(req,res)
       
         try
             {
-                const {username,email,password}=req.body;
+                const {username,email,password,cpassword}=req.body;
                 
                 const userExists = await User.findOne({username});
 
+                if(password!==cpassword)
+                return res.send("Passwords do not match");
 
                 if(userExists)
-                res.send("This username is not available");
+                return res.send("This username is not available");
                else if(await User.findOne({email}))
-                res.send("This email id is already registered");
+                return res.send("This email id is already registered");
 
                 else{
                     
@@ -24,17 +26,20 @@ export default async function loginUser(req,res)
                 let user = {username:username,email:email,password:pass};
                 await User.create(user);
                 user= await User.findOne({username});
+
+                // generateToken(res,user._id);
+                // res.json({_id : user._id , username : user.username, email:user.email , isAdmin:user.isAdmin});
                 console.log("new user added");
+                return res.send("Registration Successful");
                 
-                generateToken(res,user._id);
-                 res.json({_id : user._id , username : user.username, email:user.email , isAdmin:user.isAdmin});
             
         }
             }
             catch(error)
             {
-                res.json("Can't create account ");
+
                 console.log("Can't create account :", error);
+                return res.json("Can't create account ");
             }
       
 };

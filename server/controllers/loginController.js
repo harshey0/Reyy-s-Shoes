@@ -13,7 +13,7 @@ export default async function loginUser(req,res)
 
 
                 if(!user)
-                res.send("This username is not registered");
+                return res.send("This username is not registered");
                 else{
                     
                 
@@ -22,21 +22,25 @@ export default async function loginUser(req,res)
                 
                 if(passwordMatch)
                {
-                generateToken(res,user._id);
-                 res.json({_id : user._id , username : user.username, email:user.email , isAdmin:user.isAdmin});
+
+                generateToken(res,user.username,user.isAdmin);
+                // res.json({_id : user._id , username : user.username, email:user.email , isAdmin:user.isAdmin});
+                return res.send("Login Successful");
             }
                 else 
-                res.send("password is incorrect");}
+                return res.send("password is incorrect");}
             }
             catch(error)
             {
-                res.json("unable to login ");
+
                 console.log("unable to login  :", error);
+                return res.json("unable to login ");
             }
       
 };
 
 export function logoutUser(req,res)
 {
-    destroyToken(req,res);
+    destroyToken(res);
+    return res.send("done");
 }

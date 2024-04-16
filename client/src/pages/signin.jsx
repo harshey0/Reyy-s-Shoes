@@ -1,22 +1,72 @@
 import "../styles/signin.css";
-import {Container , Box , TextField,Link as MuiLink, Button, Typography} from "@mui/material";
-import {Link} from "react-router-dom";
-import { useState } from "react";
+import {Container , Box , TextField,Link as MuiLink, Button, Typography, Alert} from "@mui/material";
+import {Link, useNavigate } from "react-router-dom";
+import { useState, useEffect  } from "react";
+import axios from "axios";
+import tokenstore from "../session/tokenstore.js"
 
-export default function Signin() {
+import { toast  } from 'react-toastify';
 
-const [ username , newusername] = useState("");
-const [ password , newpassword] = useState("");
 
-function handle()
+const URL = process.env.REACT_APP_URLD;
+
+
+export default function Signin(props) {
+  
+
+  const navigate = useNavigate();
+
+const [ value, setvalue] = useState({username:"", password:""});
+
+const [emsg,setemsg]= useState("")
+
+useEffect(() => {
+  if (emsg === 'Login Successful') {
+   {
+    toast.success('Login Successful');
+    props.login();
+    
+        
+   }
+  }
+}, [emsg]);
+
+function change(e)
 {
-  console.log(username);
-  console.log(password);
+  setvalue({
+    ...value, [e.target.name]:e.target.value
+  })
+}
+
+async function handle(event)
+{
+  event.preventDefault();
+  try {
+    const response = await axios.post(`${URL}/user/login`, value , {
+      withCredentials: true,
+  })
+    console.log( response.data);
+    tokenstore();
+    setemsg(response.data);
+    if(response.data=== "Login Successful")
+    navigate("/");
+    // console.log(localStorage.getItem('token'))
+    
+    
+
+
+  } catch (error) {
+    console.error("Registration error:", error.response.data);
+    setemsg(error.response.data);
+  }
 }
 
   return (
    <Container className="login-container" >
    <Box className="login-box">
+   {emsg && (<Alert severity="error">
+                {emsg}
+    </Alert> )}
     <Typography className="login-text" variant="h4">
         Login
     </Typography>
@@ -28,8 +78,9 @@ function handle()
               fullWidth
               type="username"
               label="Username"
-              id="username"
-                onChange={(e)=>newusername(e.target.value)}
+              name="username"
+              value={value.username}
+                onChange={change}
               />
     <TextField 
               margin="normal" 
@@ -38,8 +89,9 @@ function handle()
               fullWidth
               type="password"
               label="Password"
-              id="password"
-              onChange={(e)=>newpassword(e.target.value)}
+              name="password"
+              value={value.password}
+              onChange={change}
               />
 
               <MuiLink component={Link} to="/" className="login-pad">Forgot Password?Click here</MuiLink>
