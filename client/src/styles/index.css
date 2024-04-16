@@ -19,3 +19,10 @@
     border: none;
     position: relative;
 }
+.loading{
+    height: 100%;
+    display: flex;
+    color: gray;
+    justify-content: center;
+    align-items: center;
+}

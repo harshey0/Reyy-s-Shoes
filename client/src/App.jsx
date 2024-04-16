@@ -114,7 +114,7 @@ function change3(name1,name2)
 }
     
 if (loading) {
-    return <div>Loading...</div>; 
+    return <div className="loading"><h1>Loading...</h1></div>; 
 }
 else
 return(
