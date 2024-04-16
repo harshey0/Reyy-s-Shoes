@@ -9,8 +9,7 @@ const token = jwt.sign({username,admin},process.env.JWT_SECRET , {
                    httpOnly:false,
                    secure:true,
                    samesite:"none",
-                   maxAge: 30*24*60*60*1000,
-                   domain: '.vercel.app'
+                   maxAge: 30*24*60*60*1000
                })
             };
  export function destroyToken(res){
@@ -19,8 +18,7 @@ const token = jwt.sign({username,admin},process.env.JWT_SECRET , {
                    httpOnly:false,
                    secure:true,
                    samesite:"none",
-                   maxAge: 24*60*60*1000,
-                   domain: '.vercel.app'
+                   maxAge: 24*60*60*1000
                })
                
             };

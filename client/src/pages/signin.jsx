@@ -46,10 +46,12 @@ async function handle(event)
       withCredentials: true,
   })
     console.log( response.data);
-    tokenstore();
     setemsg(response.data);
     if(response.data=== "Login Successful")
-    {props.set();
+    {
+
+    tokenstore();
+      props.set();
     navigate("/");}
     console.log("token in signin.jsx ",localStorage.getItem('token'))
     
