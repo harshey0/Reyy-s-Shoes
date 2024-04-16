@@ -20,7 +20,6 @@ app.use(cors({
     origin: true,
     credentials: true
 }));
-app.options('*', cors());
 app.listen(PORT,()=>{console.log(`running on port ${PORT}`)});
 
 app.get("/",(req,res)=> res.send("api is running"));
