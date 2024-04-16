@@ -1,5 +1,4 @@
 import User from "../models/userModel.js";
-import generateToken from "../utils/Token.js";
 import bcryptjs from "bcryptjs";
 
 export default async function loginUser(req,res)
@@ -27,8 +26,6 @@ export default async function loginUser(req,res)
                 await User.create(user);
                 user= await User.findOne({username});
 
-                // generateToken(res,user._id);
-                // res.json({_id : user._id , username : user.username, email:user.email , isAdmin:user.isAdmin});
                 console.log("new user added");
                 return res.send("Registration Successful");
                 
