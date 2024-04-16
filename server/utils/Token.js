@@ -6,7 +6,7 @@ const token = jwt.sign({username,admin},process.env.JWT_SECRET , {
   expiresIn: '30d'
 })
                res.cookie('jwt',token,{
-                   httpOnly:false,
+                   httpOnly:true,
                    secure:process.env.NODE_ENV !== 'development',
                    samesite:"none",
                    maxAge: 30*24*60*60*1000
@@ -15,7 +15,7 @@ const token = jwt.sign({username,admin},process.env.JWT_SECRET , {
  export function destroyToken(res){
 
                res.cookie('jwt',"h",{
-                   httpOnly:false,
+                   httpOnly:true,
                    secure:process.env.NODE_ENV !== 'development',
                    samesite:"none",
                    maxAge: 24*60*60*1000
