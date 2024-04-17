@@ -6,7 +6,6 @@ const token = jwt.sign({username,admin},process.env.JWT_SECRET , {
   expiresIn: '30d'
 })
                res.cookie('jwt',token,{
-                domain: ".vercel.app",
                    secure:true,
                    sameSite:"None",
                    maxAge: 30*24*60*60*1000,
