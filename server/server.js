@@ -14,7 +14,7 @@ connectDb();
 const PORT =process.env.PORT;
 
 
-
+const app = express ();
 app.use(cookieParser());
 // passport(app);
 app.use(express.json());
