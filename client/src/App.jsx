@@ -116,11 +116,11 @@ function change3(name1,name2)
 if (loading) {
     return <div className="loading">
     <div class="load">
-        <div class="spinner"></div>
-        <h1>Loading...</h1>
-        <h2>This is Harshit Sethi's Website</h2>
-        <h3>Who is Harshit Sethi?</h3>
+        <h1>Loading... </h1>
+         <h3>This is Harshit Sethi's Website</h3> 
+        
         <ul class="facts">
+        <h5>Who is Harshit Sethi?</h5>
         <li>Passionate and dedicated web developer</li>
             <li>Innovative thinker, constantly seeking new ideas</li>
             <li>Detail-oriented with a keen eye for design</li>
