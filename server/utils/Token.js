@@ -16,7 +16,7 @@ const token = jwt.sign({username,admin},process.env.JWT_SECRET , {
 
                res.cookie('jwt',"fake",{
                    secure:true,
-                   samesite:"None",
+                   sameSite:"None",
                    maxAge: 24*60*60*1000,
                    path: '/' 
                })
