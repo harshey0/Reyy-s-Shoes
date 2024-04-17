@@ -6,7 +6,7 @@ const token = jwt.sign({username,admin},process.env.JWT_SECRET , {
   expiresIn: '30d'
 })
                res.cookie('jwt',token,{
-                domain: process.env.APP_URL,
+                domain: ".vercel.app",
                    secure:true,
                    sameSite:"None",
                    maxAge: 30*24*60*60*1000,
@@ -16,7 +16,7 @@ const token = jwt.sign({username,admin},process.env.JWT_SECRET , {
  export function destroyToken(res){
 
                res.cookie('jwt',"fake",{
-                domain: process.env.APP_URL,
+                domain: ".vercel.app",
                    secure:true,
                    sameSite:"None",
                    maxAge: 24*60*60*1000,
