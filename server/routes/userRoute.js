@@ -9,7 +9,7 @@ router.post("/login",loginUser);
 
 router.post("/register",registerUser);
 router.post("/verify",verifyToken)
-router.get("/logout",logoutUser);
+router.post("/logout",logoutUser);
 
 
 export default router;

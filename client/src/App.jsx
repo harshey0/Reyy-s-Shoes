@@ -25,7 +25,7 @@ function App(){
     
     useEffect(()=>{async function fetch(){
         try{
-         const res = await axios.get(`${URL}/data/products`);
+         const res = await axios.post(`${URL}/data/products`);
         newdata(res.data);
         newdat(res.data);
     }   catch (error) {
@@ -114,7 +114,29 @@ function change3(name1,name2)
 }
     
 if (loading) {
-    return <div className="loading"><h1>Loading...</h1></div>; 
+    return <div className="loading">
+    <div class="load">
+        <div class="spinner"></div>
+        <h1>Loading...</h1>
+        <h2>This is Harshit Sethi's Website</h2>
+        <h3>Who is Harshit Sethi?</h3>
+        <ul class="facts">
+        <li>Passionate and dedicated web developer</li>
+            <li>Innovative thinker, constantly seeking new ideas</li>
+            <li>Detail-oriented with a keen eye for design</li>
+            <li>Excellent problem solver, loves challenges</li>
+            <li>Strong communicator, values collaboration</li>
+            <li>Resilient and determined, never gives up easily</li>
+            <li>Continuous learner, always expanding skills</li>
+            <li>Organized and efficient, meets deadlines consistently</li>
+            <li>Strives for excellence in every aspect of work</li>
+            <li>Inspires others with his dedication and hard work</li>
+            <li>Committed to personal and professional growth</li>
+            <li>Enthusiastic about making a positive impact</li>
+            <li>Driven by a desire to create meaningful experiences</li>
+        </ul>
+    </div>
+</div>
 }
 else
 return(

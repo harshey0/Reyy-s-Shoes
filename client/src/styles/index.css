@@ -19,10 +19,47 @@
     border: none;
     position: relative;
 }
-.loading{
-    height: 90vh;
+
+.loading {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+.load {
+    height: 100vh;
     display: flex;
-    color: gray;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    color: #333;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #ccc;
+    border-top-color: #888;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.facts {
+    list-style-type: none;
+    padding: 0;
+}
+
+.facts li {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #555;
 }
