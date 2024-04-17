@@ -8,7 +8,7 @@ import tokenstore from "../session/tokenstore.js"
 import { toast  } from 'react-toastify';
 
 
-const URL = process.env.REACT_APP_URL;
+const URLS = process.env.REACT_APP_URLS;
 
 
 export default function Signin(props) {
@@ -31,6 +31,16 @@ useEffect(() => {
   }
 }, [emsg]);
 
+  // async function google(){
+  //   try {
+  //     const response = await axios.get(`${URLS}/user/google/login`);
+
+  //     window.location.href = response.data.authUrl;
+  //   } catch (error) {
+  //     console.error('Error logging in with Google:', error);
+  //   }
+  // };
+
 function change(e)
 {
   setvalue({
@@ -42,7 +52,7 @@ async function handle(event)
 {
   event.preventDefault();
   try {
-    const response = await axios.post(`${URL}/user/login`, value , {
+    const response = await axios.post(`${URLS}/user/login`, value , {
       withCredentials: true,
   })
     console.log( response.data.message);
@@ -59,8 +69,8 @@ async function handle(event)
 
 
   } catch (error) {
-    console.error("Registration error:", error.response.data);
-    setemsg(error.response.data);
+    console.error("Registration error:", error.response.data.message);
+    setemsg(error.response.data.message);
   }
 }
 
@@ -97,13 +107,13 @@ async function handle(event)
               onChange={change}
               />
 
-              <MuiLink component={Link} to="/" className="login-pad">Forgot Password?Click here</MuiLink>
+              <MuiLink component={Link} to="/forget" className="login-pad">Forgot Password?Click here</MuiLink>
 
               <Button className="login-pad"
                 variant="contained" style={{backgroundColor:'red'}}
                 onClick={handle}>Sign in</Button>
-              <a href="#" style={{ textDecoration: 'none' }}>
-                    <Button className="login-pad" variant="contained" style={{ backgroundColor: 'blue' }}>
+              <a style={{ textDecoration: 'none' }}>
+                    <Button className="login-pad" variant="contained" style={{ backgroundColor: 'blue' }} >
                                      Sign in with Google
                                         </Button>
                                 </a>

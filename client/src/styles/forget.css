@@ -1,0 +1,28 @@
+.forget-container{
+    display: flex;
+    flex-direction: column;
+    min-height: 55vh;
+    margin-top: 150px;
+    
+}
+.forget-box{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+    margin: auto;
+    margin-top: 15rem;
+}
+.forget-field{
+    display: flex;
+    flex-direction: column;
+
+    width: 300px;
+}
+.forget-pad{
+
+    width: 100%;
+    padding: 10px 0px 10px 0px !important;
+}

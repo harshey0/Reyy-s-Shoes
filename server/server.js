@@ -4,7 +4,6 @@ import cors from "cors";
 import connectDb  from "./config/db.js";
 import dataRoute from "./routes/dataRoute.js"
 import userRoute from "./routes/userRoute.js"
-import cookieParser from "cookie-parser"
 // import pass
 // import passport from "./utils/passport.js"
 //harshit
@@ -15,8 +14,7 @@ const PORT =process.env.PORT;
 
 
 const app = express ();
-app.use(cookieParser());
-// passport(app);
+// app.use(passport.initialize());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cors({

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { toast  } from 'react-toastify';
 
 import axios from "axios";
-const URL = process.env.REACT_APP_URL;
+const URLS = process.env.REACT_APP_URLS;
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ function change(e)
 {
   event.preventDefault();
   try {
-    const response = await axios.post(`${URL}/user/register`, value);
+    const response = await axios.post(`${URLS}/user/register`, value);
     console.log( response.data);
     setemsg(response.data);
 

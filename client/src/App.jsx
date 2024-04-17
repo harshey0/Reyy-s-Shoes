@@ -7,12 +7,13 @@ import Signin from "./pages/signin";
 import Signup from "./pages/signup";
 import Cart from "./pages/cart"
 import Profile from "./pages/profile";
+import Forget from "./pages/forget"
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { BrowserRouter , Route, Routes, Navigate} from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-const URL = process.env.REACT_APP_URL;
+const URLS = process.env.REACT_APP_URLS;
 
 function App(){
     const [dataa,newdata] = useState([]);
@@ -25,7 +26,7 @@ function App(){
     
     useEffect(()=>{async function fetch(){
         try{
-         const res = await axios.post(`${URL}/data/products`);
+         const res = await axios.post(`${URLS}/data/products`);
         newdata(res.data);
         newdat(res.data);
     }   catch (error) {
@@ -44,7 +45,7 @@ function App(){
 
     async function session(){
         try{
-         const res = await axios.post(`${URL}/user/verify`,{},{
+         const res = await axios.post(`${URLS}/user/verify`,{},{
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}` }
             });
@@ -161,8 +162,13 @@ return(
 
          <Route path="/signin" element={<> <Signin login={()=>newlogin(true)} set={session}/> </>} />
          <Route path="/signup" element={<> <Signup/> </>} />
-         <Route path="/cart" element={<> <Cart/> </>} />
-         <Route path="/profile" element={<> <Profile/> </>} />
+         {login && (<><Route path="/cart" element={<> <Cart/> </>} />
+         <Route path="/profile" element={<> <Profile/> </>} /></>)}
+
+         <Route path="/forget" element={<> <Forget/> </>} />
+
+         <Route path="*" element={login ?<> <Navigate to="/" /></>:<><Navigate to="/signin" /> </>} />
+
         
         </Routes>
     </BrowserRouter>
