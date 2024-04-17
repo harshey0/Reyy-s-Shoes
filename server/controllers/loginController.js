@@ -13,7 +13,7 @@ export default async function loginUser(req,res)
 
 
                 if(!user)
-                return res.send("This username is not registered");
+                return res.send({message:"This username is not registered"});
                 else{
                     
                 
@@ -22,9 +22,9 @@ export default async function loginUser(req,res)
                 
                 if(passwordMatch)
                {
-                generateToken(res,user.username,user.isAdmin);
+                const token = generateToken(user.username,user.isAdmin);
 
-                return res.send("Login Successful");
+                return res.send({message:"Login Successful",token:token});
             }
                 else 
                 return res.send("password is incorrect");}
@@ -33,13 +33,13 @@ export default async function loginUser(req,res)
             {
 
                 console.log("unable to login  :", error);
-                return res.json("unable to login ");
+                return res.send({message:"unable to login "});
             }
       
 };
 
 export function logoutUser(req,res)
 {
-    destroyToken(res);
-    return res.send("done");
+   const token = destroyToken();
+    return res.send({message:"Logout Successful",token:token});
 }

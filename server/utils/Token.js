@@ -1,26 +1,15 @@
 
 import jwt from "jsonwebtoken";
 
-export default function generateToken(res,username,admin){
+export default function generateToken(username,admin){
 const token = jwt.sign({username,admin},process.env.JWT_SECRET , {
   expiresIn: '30d'
 })
-               res.cookie('jwt',token,{
-                   secure:true,
-                   sameSite:"None",
-                   maxAge: 30*24*60*60*1000,
-                   path: '/' 
-               })
+               return token;
             };
- export function destroyToken(res){
+ export function destroyToken(){
 
-               res.cookie('jwt',"fake",{
-                domain: ".vercel.app",
-                   secure:true,
-                   sameSite:"None",
-                   maxAge: 24*60*60*1000,
-                   path: '/' 
-               })
+              return "fake";
                
             };
 

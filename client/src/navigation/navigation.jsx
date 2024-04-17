@@ -21,10 +21,10 @@ export default function Navigation(props) {
     toast.success('Logout Successful');
     props.logout();
     newcheck(false);
-    await axios.get(`${URL}/user/logout`, {
+    const res=await axios.get(`${URL}/user/logout`, {
       withCredentials: true,
   })
-    tokenstore();
+    tokenstore(res.data.token);
 
 
   }

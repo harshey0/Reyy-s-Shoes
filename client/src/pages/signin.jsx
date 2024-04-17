@@ -45,12 +45,12 @@ async function handle(event)
     const response = await axios.post(`${URL}/user/login`, value , {
       withCredentials: true,
   })
-    console.log( response.data);
-    setemsg(response.data);
-    if(response.data=== "Login Successful")
+    console.log( response.data.message);
+    setemsg(response.data.message);
+    if(response.data.message &&response.data.message=== "Login Successful")
     {
 
-    tokenstore();
+    tokenstore(response.data.token);
       props.set();
     navigate("/");}
     console.log("token in signin.jsx ",localStorage.getItem('token'))
