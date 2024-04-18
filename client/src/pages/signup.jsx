@@ -3,8 +3,10 @@ import {Container , Box , TextField,Link as MuiLink, Button, Typography, Alert} 
 import {Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { toast  } from 'react-toastify';
-
+import google from "../googleAuth/google.js"
 import axios from "axios";
+
+
 const URLS = process.env.REACT_APP_URLS;
 
 export default function Signup() {
@@ -12,6 +14,7 @@ export default function Signup() {
  
         const [emsg,setemsg]= useState("")
         const [ value, setvalue] = useState({username:"",email:"", password:"" , cpassword:""});
+
         useEffect(() => {
           if (emsg === 'Registration Successful') {
            {
@@ -20,6 +23,12 @@ export default function Signup() {
            }
           }
         }, [emsg]);
+
+        function auth()
+        {
+           google();
+       }  
+        
 
 function change(e)
 {
@@ -98,9 +107,10 @@ function change(e)
 
               <Button type="submit" className="signup-pad" 
                 variant="contained" style={{backgroundColor:'red'}} onClick={handle}>Sign up</Button>
-                <a href="#"  style={{ textDecoration: 'none' }}>
+                <a style={{ textDecoration: 'none' }}>
+                
               <Button  className="signup-pad"
-                variant="contained" style={{backgroundColor:'blue'}}>Sign up with google</Button>
+                variant="contained" style={{backgroundColor:'blue'}} onClick={auth}>Continue with google</Button>
                 </a>
             <MuiLink component={Link} className="signup-pad" to="/signin">Already have an account?Click here</MuiLink>
               </Box>

@@ -15,8 +15,11 @@ export default async function loginUser(req,res)
                 if (!(firstCharacter >= 'a' && firstCharacter <= 'z') && !(firstCharacter >= 'A' && firstCharacter <= 'Z'))
                 return res.send("First character of the username must be a letter");
 
-                if(username.length<4)
-                return res.send("Username must be atleast 4 characters long");
+                else if(username.length<4)
+                return res.send("Username too short");
+
+                if(username.length>8)
+                return res.send("Username too long");
 
                 else if (!usernameRegex.test(username))
                 return res.send("Username should only contain letters and numbers");

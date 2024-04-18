@@ -1,7 +1,7 @@
 
 import nodemailer from "nodemailer";
 
-export default function mailer(email,link)
+export default function mail(email,message)
 {var transporter = nodemailer.createTransport({
     service: 'gmail',
     port: 587,
@@ -16,7 +16,7 @@ export default function mailer(email,link)
     from:"Harshit Sethi <singlaarnav66@gmail.com>",
     to: email,
     subject: 'Password reset link',
-    text: `Dear User,\n\nYou have requested to reset your password. Please click on the following link to reset your password. This link will expire in 5 minutes:\n\n${link}\n\nIf you did not request this change, you can ignore this email.\n\nBest regards,\nThe Reyy's Shoes Team`
+    text: message
     
   };
   

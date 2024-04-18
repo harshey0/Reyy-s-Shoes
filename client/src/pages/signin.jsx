@@ -4,7 +4,7 @@ import {Link, useNavigate } from "react-router-dom";
 import { useState, useEffect  } from "react";
 import axios from "axios";
 import tokenstore from "../session/tokenstore.js"
-
+import google from "../googleAuth/google.js"
 import { toast  } from 'react-toastify';
 
 
@@ -29,15 +29,12 @@ useEffect(() => {
   }
 }, [emsg]);
 
-  // async function google(){
-  //   try {
-  //     const response = await axios.get(`${URLS}/user/google/login`);
+ 
+function auth()
+{
+   google();
+}  
 
-  //     window.location.href = response.data.authUrl;
-  //   } catch (error) {
-  //     console.error('Error logging in with Google:', error);
-  //   }
-  // };
 
 function change(e)
 {
@@ -111,8 +108,8 @@ async function handle(event)
                 variant="contained" style={{backgroundColor:'red'}}
                 onClick={handle}>Sign in</Button>
               <a style={{ textDecoration: 'none' }}>
-                    <Button className="login-pad" variant="contained" style={{ backgroundColor: 'blue' }} >
-                                     Sign in with Google
+                    <Button className="login-pad" variant="contained" style={{ backgroundColor: 'blue' }} onClick={auth}>
+                                     Continue with Google
                                         </Button>
                                 </a>
 
