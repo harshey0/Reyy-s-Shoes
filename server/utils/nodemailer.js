@@ -13,7 +13,7 @@ export default function mail(email,message)
   });
   
   var mailOptions = {
-    from:"Harshit Sethi <singlaarnav66@gmail.com>",
+    from:"Reyy's Shoes <singlaarnav66@gmail.com>",
     to: email,
     subject: 'Password reset link',
     text: message
