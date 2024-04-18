@@ -2,8 +2,8 @@ import "../styles/signup.css";
 import {Container , Box , TextField,Link as MuiLink, Button, Typography, Alert} from "@mui/material";
 import {Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import googleAuth from "../oauth2.0/googleAuth.js"
 import { toast  } from 'react-toastify';
-import google from "../googleAuth/google.js"
 import axios from "axios";
 
 
@@ -24,10 +24,12 @@ export default function Signup() {
           }
         }, [emsg]);
 
-        function auth()
+       async function google()
         {
-           google();
+          await googleAuth();
        }  
+
+       
         
 
 function change(e)
@@ -110,7 +112,7 @@ function change(e)
                 <a style={{ textDecoration: 'none' }}>
                 
               <Button  className="signup-pad"
-                variant="contained" style={{backgroundColor:'blue'}} onClick={auth}>Continue with google</Button>
+                variant="contained" style={{backgroundColor:'blue'}} onClick={google}>Continue with google</Button>
                 </a>
             <MuiLink component={Link} className="signup-pad" to="/signin">Already have an account?Click here</MuiLink>
               </Box>

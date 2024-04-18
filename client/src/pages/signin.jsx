@@ -2,9 +2,9 @@ import "../styles/signin.css";
 import {Container , Box , TextField,Link as MuiLink, Button, Typography, Alert} from "@mui/material";
 import {Link, useNavigate } from "react-router-dom";
 import { useState, useEffect  } from "react";
+import googleAuth from "../oauth2.0/googleAuth.js"
 import axios from "axios";
 import tokenstore from "../session/tokenstore.js"
-import google from "../googleAuth/google.js"
 import { toast  } from 'react-toastify';
 
 
@@ -30,9 +30,9 @@ useEffect(() => {
 }, [emsg]);
 
  
-function auth()
+function google()
 {
-   google();
+  googleAuth();
 }  
 
 
@@ -108,7 +108,7 @@ async function handle(event)
                 variant="contained" style={{backgroundColor:'red'}}
                 onClick={handle}>Sign in</Button>
               <a style={{ textDecoration: 'none' }}>
-                    <Button className="login-pad" variant="contained" style={{ backgroundColor: 'blue' }} onClick={auth}>
+                    <Button className="login-pad" variant="contained" style={{ backgroundColor: 'blue' }} onClick={google}>
                                      Continue with Google
                                         </Button>
                                 </a>

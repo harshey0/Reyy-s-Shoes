@@ -2,7 +2,7 @@ import User from "../models/userModel.js";
 import bcryptjs from "bcryptjs";
 
 export default async function loginUser(req,res)
-{
+{ 
       
         try
             {
@@ -18,7 +18,7 @@ export default async function loginUser(req,res)
                 else if(username.length<4)
                 return res.send("Username too short");
 
-                if(username.length>8)
+                if(username.length>12)
                 return res.send("Username too long");
 
                 else if (!usernameRegex.test(username))
@@ -46,7 +46,6 @@ export default async function loginUser(req,res)
                 
                 let user = {username:username,email:email,password:pass};
                 await User.create(user);
-                user= await User.findOne({username});
 
                 console.log("new user added");
                 return res.send("Registration Successful");

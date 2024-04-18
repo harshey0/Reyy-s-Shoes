@@ -1,5 +1,5 @@
 
-export default function tokestore(token)
+export default function tokenstore(token)
 {
     
   console.log("token in tokenstore.js ",token)
