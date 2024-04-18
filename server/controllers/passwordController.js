@@ -17,7 +17,7 @@ export async function forget(req,res)
     return res.send({message:"This email is not registered"});
     else{
         const token = generateToken(user.username,user.isAdmin,"5m");
-    const link = `${process.env.URLC}/${user._id}/${token}`;
+    const link = `${process.env.URLC}/reset/${user._id}/${token}`;
     mailer(email,link);
     console.log(link);
     return res.send({message:"Reset link is sent to this email"});
