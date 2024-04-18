@@ -25,8 +25,6 @@ useEffect(() => {
    {
     toast.success('Login Successful');
     props.login();
-    
-        
    }
   }
 }, [emsg]);
@@ -69,7 +67,7 @@ async function handle(event)
 
 
   } catch (error) {
-    console.error("Registration error:", error.response.data.message);
+    console.error("Signin error:", error.response.data.message);
     setemsg(error.response.data.message);
   }
 }

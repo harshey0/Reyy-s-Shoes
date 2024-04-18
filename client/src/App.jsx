@@ -7,7 +7,8 @@ import Signin from "./pages/signin";
 import Signup from "./pages/signup";
 import Cart from "./pages/cart"
 import Profile from "./pages/profile";
-import Forget from "./pages/forget"
+import Forget from "./pages/forget";
+import Reset from "./pages/reset";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { BrowserRouter , Route, Routes, Navigate} from 'react-router-dom';
@@ -152,20 +153,18 @@ return(
         <Route path="/" element={ 
           
              login ?(<><Sidebar onSidepress={change3} />
-     
-
-       
          <Recommended onPress={change2}  />
         
          <Products data={dataa}/></>) :<Navigate to="/signin" />}/>
 
 
+         
+         {login ? (<><Route path="/cart" element={<> <Cart/> </>} />
+         <Route path="/profile" element={<> <Profile/> </>} /></>):(<>
          <Route path="/signin" element={<> <Signin login={()=>newlogin(true)} set={session}/> </>} />
          <Route path="/signup" element={<> <Signup/> </>} />
-         {login && (<><Route path="/cart" element={<> <Cart/> </>} />
-         <Route path="/profile" element={<> <Profile/> </>} /></>)}
-
          <Route path="/forget" element={<> <Forget/> </>} />
+         <Route path="/reset/:id/:token" element={<> <Reset/> </>} /></>)}
 
          <Route path="*" element={login ?<> <Navigate to="/" /></>:<><Navigate to="/signin" /> </>} />
 

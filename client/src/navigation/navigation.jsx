@@ -7,7 +7,7 @@ import { toast  } from 'react-toastify';
 import axios from "axios";
 
 
-const URL = process.env.REACT_APP_URLC;
+const URLS = process.env.REACT_APP_URLS;
 
 
 
@@ -27,7 +27,7 @@ let Name = props.name.charAt(0).toUpperCase() + props.name.slice(1);
     toast.success('Logout Successful');
     props.logout();
     newcheck(false);
-    const res=await axios.post(`${URL}/user/logout`, {
+    const res=await axios.post(`${URLS}/user/logout`, {
       withCredentials: true,
   })
     tokenstore(res.data.token);

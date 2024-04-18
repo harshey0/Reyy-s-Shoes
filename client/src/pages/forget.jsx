@@ -1,17 +1,27 @@
 import React from 'react'
 import "../styles/forget.css";
-import {Container , Box , TextField,Link as MuiLink, Button, Typography, Alert} from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import { useState, useEffect  } from "react";
+import {Container , Box , TextField, Button, Typography, Alert} from "@mui/material";
+import { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { toast  } from 'react-toastify';
 
 export default function Forget() {
 
 
 const URLS = process.env.REACT_APP_URLS;
-
+const navigate = useNavigate();
 const [email,setemail]= useState("")
 const [emsg,setemsg]= useState("")
+
+useEffect(() => {
+  if (emsg === 'Reset link is sent to this email') {
+   {
+    toast.success('Reset link sent');
+    navigate('/');
+   }
+  }
+}, [emsg]);
 
     async function submit(event)
     {

@@ -1,0 +1,28 @@
+.reset-container{
+    display: flex;
+    flex-direction: column;
+    min-height: 55vh;
+    margin-top: 150px;
+    
+}
+.reset-box{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+    margin: auto;
+    margin-top: 15rem;
+}
+.reset-field{
+    display: flex;
+    flex-direction: column;
+
+    width: 300px;
+}
+.reset-pad{
+
+    width: 100%;
+    padding: 10px 0px 10px 0px !important;
+}
