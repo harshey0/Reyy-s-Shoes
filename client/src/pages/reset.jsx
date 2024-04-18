@@ -51,9 +51,6 @@ useEffect(() => {
       }
     }
 
-   
-      
-
     return (
 
         <Container className="reset-container" >
