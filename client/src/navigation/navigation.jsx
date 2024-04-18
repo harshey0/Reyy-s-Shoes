@@ -9,10 +9,6 @@ import axios from "axios";
 
 const URLS = process.env.REACT_APP_URLS;
 
-
-
-
-
 export default function Navigation(props) {
 
   const [check,newcheck]=useState(false);

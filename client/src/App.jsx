@@ -12,7 +12,7 @@ import Reset from "./pages/reset";
 import tokenstore from "./session/tokenstore";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { BrowserRouter , Route, Routes, Navigate} from 'react-router-dom';
+import { BrowserRouter , Route, Routes, Navigate , useNavigate} from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { toast } from "react-toastify"; 
 import 'react-toastify/dist/ReactToastify.css';
@@ -42,6 +42,20 @@ function App(){
         
         fetch(); set(); 
     },[]);
+
+
+
+function handleCallback() {
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get('token');
+    if(token)
+    {
+        tokenstore(token);
+        // toast.success('Registration Successful');
+        // session();
+        window.location.href = '/';
+    }
+  }window.onload = handleCallback;
    
 
     async function session(){
@@ -175,17 +189,6 @@ return(
 }
 
 
-
-function handleCallback() {
-    const params = new URLSearchParams(window.location.search);
-    const token = params.get('token');
-    if(token)
-    {
-        tokenstore(token);
-        window.location.href = '/';
-        toast.success('Registration Successful');
-    }
-  }window.onload = handleCallback;
 
 
 
