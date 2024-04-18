@@ -29,8 +29,7 @@ export default async function googleAuth(name,email)
             }
             let user = {username:uniquename,email:email,password:pass};
                 await User.create(user);
-                user= await User.findOne({uniquename});
-                return generateToken(user.username,user.isAdmin,"10d");
+                return generateToken(uniquename,false,"10d");
         }
     }
     catch(error)

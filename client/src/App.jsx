@@ -50,8 +50,10 @@ function handleCallback() {
     const token = params.get('token');
     if(token)
     {
+        console.log("yies");
         tokenstore(token);
         // toast.success('Registration Successful');
+        // newlogin(true);
         // session();
         window.location.href = '/';
     }
