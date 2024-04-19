@@ -2,6 +2,7 @@
 import $ from 'jquery';
 export default function Button(props) {
 
+
     function search2()
     {
         props.onPress2(props.name);

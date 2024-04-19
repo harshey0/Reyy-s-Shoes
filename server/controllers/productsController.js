@@ -16,11 +16,11 @@ export default async function products(req,res){
 
     export async function productByid(req,res){
 
-        const _id=req.body;
+        const {id}=req.body;
     
         try
         {
-            res.json(await Product.findOne({_id}));
+            res.json(await Product.findOne({_id:id}));
         }
         catch(error)
         {

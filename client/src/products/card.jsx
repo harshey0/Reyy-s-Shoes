@@ -15,7 +15,7 @@ const {img,_id,star,reviews,prevPrice,newPrice,title}=props.data;
 
 
   return (
-    <section className="card" onClick={()=>navigate(`/details/:${_id}`)}>
+    <section className="card" onClick={()=>navigate(`/details/${_id}`)}>
 <img src={img} alt="shoe" />
 <div className="card-details">
   <h3 className="card-title">{title}</h3>
@@ -25,8 +25,8 @@ const {img,_id,star,reviews,prevPrice,newPrice,title}=props.data;
   <span className="total-reviews">{reviews}</span>
   </section>
   <section className="card-price">
-  <div className="price"><del>{prevPrice}</del> {newPrice}</div>
-
+  <div className="price"><del>{prevPrice}</del> {newPrice} </div>
+ <div className="mark" ><div class="checkmark-icon"/> Varified</div>
 
 </section>
 </div>

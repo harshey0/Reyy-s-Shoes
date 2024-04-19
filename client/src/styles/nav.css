@@ -5,14 +5,14 @@ nav{
     border-bottom: 2px solid #c9c9c9;
     margin-bottom: 20px;
     height: 43px;
-    background-color: #f3f3f3;
+    background-color: #096bd4;
     position: fixed;
     top: 0;
     width: 100%;
 }
 .icon{
     margin: 10px 0px 15px 0px;
-    color: rgb(69, 67, 67);
+    color: white;
     text-decoration: none;
     font-weight: 900;
     font-size: larger;
@@ -35,7 +35,7 @@ nav{
     align-items: center;
     font-size: large;
     padding: 0px 20px 0px 20px;
-    color: black;
+    color: white;
     text-decoration: none;
 }
 .profile-sec:hover{
@@ -51,7 +51,7 @@ nav{
     
     display: flex;
     flex-direction: column;
-    background-color: #f3f3f3;
+    background-color: #096bd4;
 }
   
   .drop{

@@ -1,7 +1,7 @@
 .card-container{
     display: flex;
     flex-wrap: wrap;
-    margin-left: 15rem;
+    margin-left: 10rem;
     margin-top: 20px;
     
 }
@@ -9,8 +9,8 @@
 .card{
     margin: 20px;
     border: 2px solid #ededed;
-    padding: 20px;
-    width: 13.7rem;
+    padding: 50px 20px 30px 20px;
+    width: 14.9rem;
     transition: transform 0.3s ease;
 }
 .card:hover {
@@ -23,7 +23,7 @@ img{
 }
 .card-title{
     font-size: relative;
-    margin-bottom: 1rem;
+    margin-bottom: 20px;
 }
 
 .card-reviews{
@@ -41,4 +41,25 @@ img{
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+.price{
+    margin-left: 10px;
+}
+  .checkmark-icon {
+    width: 25px;
+    height: 25px;
+    border: 2px solid #096bd4;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.checkmark-icon::before {
+    content: '\2714'; 
+    font-size: 20px;
+    color: #096bd4;
+}
+.mark{
+    display: flex;
+    flex-direction: row;
 }

@@ -2,7 +2,8 @@
     display: flex;
     flex-direction: column;
     min-height: 55vh;
-    margin-top: 150px;
+    margin-top: 100px;
+    padding-top: 100px;
     
 }
 .reset-box{
@@ -13,7 +14,6 @@
     justify-content: center;
     width: 500px;
     margin: auto;
-    margin-top: 15rem;
 }
 .reset-field{
     display: flex;
