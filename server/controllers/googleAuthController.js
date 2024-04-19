@@ -19,7 +19,7 @@ export default async function googleAuth(name,email)
              let usernameExists = true;
 
             while (usernameExists) {
-                const existingUser = await User.findOne({ uniquename });
+                const existingUser = await User.findOne({ username: uniquename });
     
                 if (!existingUser) {
                     usernameExists = false;
