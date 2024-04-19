@@ -8,12 +8,7 @@ export default function Products(props) {
    <section className="card-container">
 
   
-{props.data.map((data)=><Card img={data.img} 
-title={data.title}
-star={data.star}
-reviews={data.reviews}
-prevPrice={data.prevPrice}
-newPrice={data.newPrice}/>)}
+{props.data.map((data)=><Card data={data}/>)}
 
    
    </section>

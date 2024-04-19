@@ -3,12 +3,18 @@
     flex-wrap: wrap;
     margin-left: 15rem;
     margin-top: 20px;
+    
 }
+
 .card{
     margin: 20px;
     border: 2px solid #ededed;
     padding: 20px;
     width: 13.7rem;
+    transition: transform 0.3s ease;
+}
+.card:hover {
+    transform: scale(1.13); /* Increase the size by 5% on hover */
 }
 img{
     width: 210px;
@@ -35,7 +41,4 @@ img{
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-.bag{
-    color: #535353;
 }

@@ -7,6 +7,7 @@ import Signin from "./pages/signin";
 import Signup from "./pages/signup";
 import Cart from "./pages/cart"
 import Profile from "./pages/profile";
+import Productdetails from "./pages/productdetails";
 import Forget from "./pages/forget";
 import Reset from "./pages/reset";
 import tokenstore from "./session/tokenstore";
@@ -157,7 +158,8 @@ return(
 
          
          {login ? (<><Route path="/cart" element={<> <Cart/> </>} />
-         <Route path="/profile" element={<> <Profile/> </>} /></>):(<>
+         <Route path="/profile" element={<> <Profile/> </>} />
+         <Route path="/details/:id" element={<> <Productdetails/> </>} /></>):(<>
          <Route path="/signin" element={<> <Signin login={()=>newlogin(true)} set={session}/> </>} />
          <Route path="/signup" element={<> <Signup/> </>} />
          <Route path="/forget" element={<> <Forget/> </>} />

@@ -1,9 +1,10 @@
 import express from "express";
 // import User from "../models/userModel.js"
-import Feed from "../controllers/feedController.js"
+import products ,{productByid} from "../controllers/productsController.js"
 
 const router = express.Router();
-router.post("/products",Feed);
+router.post("/products",products);
+router.post("/productbyid",productByid);
 
 
 // router.get("/users",async(req,res)=> {try
