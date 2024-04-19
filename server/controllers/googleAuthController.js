@@ -1,6 +1,7 @@
 import User from "../models/userModel.js";
 import generateToken from "../utils/Token.js";
 import bcryptjs from "bcryptjs";
+import mail from "../utils/nodemailer.js";
 
 export default async function googleAuth(name,email)
 {
@@ -29,6 +30,16 @@ export default async function googleAuth(name,email)
             }
             let user = {username:uniquename,email:email,password:pass};
                 await User.create(user);
+                const subject = "Welcome to Reyy's Shoes!";
+const message = `Dear ${uniquename},
+
+Thank you for registering with Reyy's Shoes! We are thrilled to have you join our community.
+
+If you have any questions or need assistance, feel free to reach out to us at any time.
+
+Best regards,
+Reyy's Shoes Team`;
+                        mail(email,message,subject);
                 return generateToken(uniquename,false,"10d");
         }
     }
