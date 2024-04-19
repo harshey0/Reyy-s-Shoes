@@ -19,8 +19,18 @@ export async function forget(req,res)
         const token = generateToken(user.username,user.isAdmin,"5m");
         
     const link = `${process.env.URLC}/reset/${user._id}/${token}`;
-    const msg= `Dear User,\n\nYou have requested to reset your password. Please click on the following link to reset your password. This link will expire in 5 minutes:\n\n${link}\n\nIf you did not request this change, you can ignore this email.\n\nBest regards,\nThe Reyy's Shoes Team`
-    mail(email,msg);
+    const subject = "Password Reset Request";
+    const message = `Dear ${user.username},
+    
+    We received a request to reset your password for your Reyy's Shoes account. Please click on the following link to reset your password:
+    
+    ${link}
+    
+    If you did not make this request, you can safely ignore this email. Your password will remain unchanged.
+    
+    Best regards,
+    Reyy's Shoes Team`;
+    mail(email,message,subject);
     console.log(link);
     return res.send({message:"Reset link is sent to this email"});
     }}

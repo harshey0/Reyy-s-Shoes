@@ -1,7 +1,7 @@
 
 import nodemailer from "nodemailer";
 
-export default function mail(email,message)
+export default function mail(email,message,subject)
 {var transporter = nodemailer.createTransport({
     service: 'gmail',
     port: 587,
@@ -15,7 +15,7 @@ export default function mail(email,message)
   var mailOptions = {
     from:"Reyy's Shoes <singlaarnav66@gmail.com>",
     to: email,
-    subject: 'Password reset link',
+    subject: subject,
     text: message
     
   };
