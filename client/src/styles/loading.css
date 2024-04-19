@@ -1,0 +1,64 @@
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 85vh;
+  }
+  
+  .loading {
+    text-align: center;
+  }
+  
+  .loading-animation {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #007bff; /* Blue color */
+    position: relative;
+    animation: spin 4s linear infinite; /* Adjust the total animation duration */
+  }
+
+  .loading h1{
+    margin-top: 20px;
+   color: grey;
+  }
+  
+  .loading-animation::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white */
+    animation: spin 4s linear infinite; /* Adjust the total animation duration */
+  }
+  
+  .loading-animation::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-bottom: 50px solid #007bff; /* Blue color */
+    transform-origin: bottom center;
+    animation: rotateBackAndForth 4s linear infinite;
+  }
+  
+  @keyframes spin {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(360deg); } /* Fast rotation */
+    50% { transform: rotate(720deg); } /* Slow rotation */
+    75% { transform: rotate(1080deg); } /* Fast rotation */
+  }
+  
+  @keyframes rotateBackAndForth {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(45deg); } /* Rotate it to the right */
+  }
+  

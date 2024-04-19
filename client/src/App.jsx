@@ -10,11 +10,12 @@ import Profile from "./pages/profile";
 import Forget from "./pages/forget";
 import Reset from "./pages/reset";
 import tokenstore from "./session/tokenstore";
+import LoadingPage from "./loading/loading";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { BrowserRouter , Route, Routes, Navigate , useNavigate} from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import { toast } from "react-toastify"; 
+// import { toast } from "react-toastify"; 
 import 'react-toastify/dist/ReactToastify.css';
 const URLS = process.env.REACT_APP_URLS;
 
@@ -50,12 +51,13 @@ function handleCallback() {
     const token = params.get('token');
     if(token)
     {
-        console.log("yies");
+        
         tokenstore(token);
-        // toast.success('Registration Successful');
+        
         // newlogin(true);
         // session();
         window.location.href = '/';
+        // toast.success('Registration Successful');
     }
   }window.onload = handleCallback;
    
@@ -132,29 +134,8 @@ function change3(name1,name2)
 }
     
 if (loading) {
-    return <div className="loading">
-    <div class="load">
-        <h1>Loading... </h1>
-         <h3>This is Harshit Sethi's Website</h3> 
-        
-        <ul class="facts">
-        <h5>Who is Harshit Sethi?</h5>
-        <li>Passionate and dedicated web developer</li>
-            <li>Innovative thinker, constantly seeking new ideas</li>
-            <li>Detail-oriented with a keen eye for design</li>
-            <li>Excellent problem solver, loves challenges</li>
-            <li>Strong communicator, values collaboration</li>
-            <li>Resilient and determined, never gives up easily</li>
-            <li>Continuous learner, always expanding skills</li>
-            <li>Organized and efficient, meets deadlines consistently</li>
-            <li>Strives for excellence in every aspect of work</li>
-            <li>Inspires others with his dedication and hard work</li>
-            <li>Committed to personal and professional growth</li>
-            <li>Enthusiastic about making a positive impact</li>
-            <li>Driven by a desire to create meaningful experiences</li>
-        </ul>
-    </div>
-</div>
+    return (<LoadingPage/>)
+
 }
 else
 return(
