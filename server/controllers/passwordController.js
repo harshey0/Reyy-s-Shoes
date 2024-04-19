@@ -23,11 +23,11 @@ export async function forget(req,res)
     const message = `Dear ${user.username},
     
     We received a request to reset your password for your Reyy's Shoes account. Please click on the following link to reset your password:
-    
+        
     ${link}
-    
+        
     If you did not make this request, you can safely ignore this email. Your password will remain unchanged.
-    
+        
     Best regards,
     Reyy's Shoes Team`;
     mail(email,message,subject);
