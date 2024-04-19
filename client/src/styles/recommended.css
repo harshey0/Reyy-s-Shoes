@@ -1,18 +1,20 @@
-.button{
-   margin-left: 5px;
-   padding: 10px 20px;
-   border: 0.6px solid #ccc;
-   border-radius: 5px;
-   margin-top: 20px;
-   background: transparent;
-   color: #323232;
-   cursor: pointer;
-}
-.recommended{
-    margin-left: 15rem;
-    margin-top: 110px;
-
-}
-.button:hover{
-    background-color: #ccc;
-}
+.button {
+    margin-left: 5px;
+    padding: 10px 20px;
+    border: 0.6px solid #ccc;
+    border-radius: 5px;
+    margin-top: 20px;
+    background: transparent;
+    color: #323232;
+    cursor: pointer;
+    transition: background-color 0.3s ease; 
+ }
+ 
+ .recommended {
+     margin-left: 15rem;
+     margin-top: 110px;
+ }
+ 
+ .button:hover {
+     background-color: #e0e0e0; 
+ }

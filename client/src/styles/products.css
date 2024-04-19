@@ -6,15 +6,19 @@
     
 }
 
-.card{
+.card {
     margin: 20px;
     border: 2px solid #ededed;
     padding: 50px 20px 30px 20px;
     width: 14.9rem;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 7px; 
+    background-color: #fff; 
 }
+
 .card:hover {
-    transform: scale(1.13); /* Increase the size by 5% on hover */
+    transform: scale(1.13); 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); 
 }
 img{
     width: 210px;

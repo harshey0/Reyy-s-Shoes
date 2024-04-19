@@ -20,6 +20,7 @@ nav{
 .input-search{
     margin-left: 10.3rem;
     font-size: 15px;
+    border-radius: 5px;
 }
 .nav-container{
     display: flex;
