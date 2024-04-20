@@ -3,18 +3,21 @@ import "../styles/productdetails.css"
 import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import LoadingPage from '../loading/loading';
 
 export default function Productdetails() {
 
     const URLS = process.env.REACT_APP_URLS;
     const id = useParams();
     const [ data,newdata]=useState("");
+    const [ loading,newloading]=useState(true);
     const navigate=useNavigate();
 
 useEffect(()=> {async function fetch()
 {try
 {
    const response = await axios.post(`${URLS}/data/productbyid`,id);
+   newloading(false)
     newdata(response.data);
 }
 catch(error)
@@ -24,7 +27,11 @@ catch(error)
 },[]
 );
 
+if (loading) {
+    return (<LoadingPage/>)
 
+}
+else
   return (
     <div className='details'>
     <button className="go-back-button" onClick={()=>navigate("/")}>Go Back</button>
