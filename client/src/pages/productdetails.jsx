@@ -137,7 +137,7 @@ else
                         <div className="comment-user">~ {comment.name}</div>
                         {comment.name === props.name && (
                             <div className="edit-delete-container">
-                    <button className="delete-button" onClick={()=>deletereview(data.comments[index]._id)}>Delete</button>
+                    <button className="delete-button" onClick={()=>deletereview(comment._id)}>Delete</button>
                 </div>
             )}
                     </div>
@@ -149,4 +149,4 @@ else
 
         </div>
   )
-                        }
+  }
