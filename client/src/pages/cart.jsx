@@ -48,6 +48,7 @@ export default function Cart(props){
         else
         return (
           <div className="cart-container">
+           <button className="go-back-button" onClick={()=>navigate(-1)}>Go Back</button>
             <div className="cart-header">
               <h2>Shopping Cart -: </h2>
               {cartItems.length > 0 && (
@@ -60,7 +61,9 @@ export default function Cart(props){
               )}
             </div>
             {cartItems.length === 0 ? (
-              <p className="empty-cart-message">Your cart is empty</p>
+          <div>    <p className="empty-cart-message">Your cart is empty</p> 
+           <button className="continue-shopping-button" onClick={()=>navigate("/")}>Continue Shopping</button>
+           </div>
             ) : (
               <>
               <div className="cart-items">

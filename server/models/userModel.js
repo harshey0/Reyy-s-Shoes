@@ -1,5 +1,12 @@
 import mongoose from "mongoose";
 
+const addressSchema = new mongoose.Schema({
+    street: { type: String, required: true },
+    city: { type: String, required: true },
+    state: { type: String, required: true },
+    country: { type: String, required: true },
+    postalCode: { type: String, required: true }
+});
 
 const userSchema= new mongoose.Schema(
     {
@@ -23,7 +30,9 @@ const userSchema= new mongoose.Schema(
             required:true,
             default:false
         }, 
-        cart :{type:[{product : {
+        address:addressSchema
+
+        ,cart :{type:[{product : {
             type:mongoose.Schema.Types.ObjectId,
             ref:"Product"},quantity :{type:Number,default:1}}],
           required:false

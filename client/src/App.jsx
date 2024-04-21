@@ -5,7 +5,8 @@ import Recommended from "./recommended/recommended";
 import Sidebar from "./sidebar/sidebar";
 import Signin from "./pages/signin";
 import Signup from "./pages/signup";
-import Cart from "./pages/cart"
+import Cart from "./pages/cart";
+import Checkout from "./pages/checkout";
 import Profile from "./pages/profile";
 import Productdetails from "./pages/productdetails";
 import Forget from "./pages/forget";
@@ -161,6 +162,7 @@ return(
 
          
          {login ? (<><Route path="/cart" element={<> <Cart name={username}/> </>} />
+         <Route path="/checkout" element={<> <Checkout name={username}/> </>} />
          <Route path="/profile" element={<> <Profile/> </>} />
          <Route path="/details/:id" element={<> <Productdetails name={username}/> </>} /></>):(<>
          <Route path="/signin" element={<> <Signin login={()=>newlogin(true)} set={session}/> </>} />
