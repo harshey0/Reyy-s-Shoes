@@ -52,12 +52,13 @@ export default function Cart(props){
             <div className="cart-header">
               <h2>Shopping Cart -: </h2>
               {cartItems.length > 0 && (
-                <div className="subtotal">
+              <div>  <div className="subtotal">
                   <h3 className="subtotal-heading">Subtotal ~</h3>
                   <p>Total Items: {getTotalItems()}</p>
                   <p>Total Price: ${getTotalPrice()}</p>
                   <button className="proceed-to-checkout" onClick={()=>navigate("/checkout")}>Proceed to Checkout</button>
                 </div>
+                <button className="continue-shopping-button2" onClick={()=>navigate("/")}>Continue Shopping</button> </div>
               )}
             </div>
             {cartItems.length === 0 ? (
