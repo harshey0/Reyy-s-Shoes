@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 
 
-
 const userSchema= new mongoose.Schema(
     {
         username : {
@@ -23,10 +22,15 @@ const userSchema= new mongoose.Schema(
             type:Boolean,
             required:true,
             default:false
-        },
+        }, 
+        cart :{type:[{product : {
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"Product"},quantity :{type:Number,default:1}}],
+          required:false
+    ,}
         
         },
-     { timestamps:true}
+     { timestamps:true} 
 );
 
 const User = new mongoose.model("User",userSchema);

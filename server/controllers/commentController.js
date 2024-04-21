@@ -22,7 +22,7 @@ export default async function comment(req,res)
         
         const newComment = {
             name:username,
-            ...(star && { star }),
+            star,
             comment,
             user: user._id 
         };

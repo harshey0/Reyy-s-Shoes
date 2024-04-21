@@ -11,9 +11,10 @@ export default function Productdetails(props) {
 
     const URLS = process.env.REACT_APP_URLS;
     const {id} = useParams();
-    const [emsg,setemsg]= useState("")
+    const [emsg,setemsg]= useState("");
+    const [quantity,setquantity]= useState(1);
     const [ data,newdata]=useState("");
-    const [ value,newvalue]=useState({comment:"",star:"",productid:id ,username:props.name});
+    const [ value,newvalue]=useState({comment:"",star:1,productid:id ,username:props.name});
     const [ loading,newloading]=useState(true);
     const navigate=useNavigate();
 
@@ -57,6 +58,18 @@ async function deletereview(id)
         console.error('error deleteing review :', error);
 
     }}   
+async function cart()
+{
+    const value={id , quantity , username:props.name}
+    try {
+        const response = await axios.post(`${URLS}/data/cartadd`,value);
+
+        toast(response.data.message);
+
+    } catch (error) {
+        console.error('error adding to cart :', error);
+
+    }}   
 
 
 async function review()
@@ -97,9 +110,9 @@ else
             <div className="product-stock">In Stock: {data.inStock}</div>
             <div className="product-rating">Rating:  {data.star}   {data.reviews}</div>
             <div className="product-quantity">
-                Quantity: <input type="number" placeholder='1' min="1"/>
+                Quantity: <input type="number" placeholder='1' min="1" pattern="[0-9]*" value={quantity} onChange={(e)=>setquantity(e.target.value)}/>
             </div>
-            <button className="add-to-cart-button">Add to Cart</button>
+            <button className="add-to-cart-button" onClick={cart}>Add to Cart</button>
         </div>
     </div>
     <div className="comment-section">
