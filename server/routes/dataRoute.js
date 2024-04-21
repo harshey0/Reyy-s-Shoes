@@ -1,21 +1,14 @@
 import express from "express";
-// import User from "../models/userModel.js"
-import products ,{productByid} from "../controllers/productsController.js"
+import products ,{productByid} from "../controllers/productsController.js";
+import comment , {commentdelete} from "../controllers/commentController.js";
 
 const router = express.Router();
 router.post("/products",products);
 router.post("/productbyid",productByid);
+router.post("/comment",comment);
+router.delete("/commentdelete/:id",commentdelete);
 
 
-// router.get("/users",async(req,res)=> {try
-// {
-//     res.json(await User.find());
-// }
-// catch(error)
-// {
-//     res.json("error fetching products ");
-//     console.error("error fetching products :", error);
-// }});
 
 
 export default router;

@@ -162,7 +162,7 @@ return(
          
          {login ? (<><Route path="/cart" element={<> <Cart/> </>} />
          <Route path="/profile" element={<> <Profile/> </>} />
-         <Route path="/details/:id" element={<> <Productdetails/> </>} /></>):(<>
+         <Route path="/details/:id" element={<> <Productdetails name={username}/> </>} /></>):(<>
          <Route path="/signin" element={<> <Signin login={()=>newlogin(true)} set={session}/> </>} />
          <Route path="/signup" element={<> <Signup/> </>} />
          <Route path="/forget" element={<> <Forget/> </>} />

@@ -8,7 +8,7 @@ import passport from "./utils/passport.js";
 
 
 dotenv.config();
-connectDb();
+await connectDb();
 const PORT =process.env.PORT;
 
 

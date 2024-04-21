@@ -3,29 +3,79 @@ import "../styles/productdetails.css"
 import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { toast  } from 'react-toastify';
 import LoadingPage from '../loading/loading';
+import { Alert } from '@mui/material';
 
-export default function Productdetails() {
+export default function Productdetails(props) {
 
     const URLS = process.env.REACT_APP_URLS;
-    const id = useParams();
+    const {id} = useParams();
+    const [emsg,setemsg]= useState("")
     const [ data,newdata]=useState("");
+    const [ value,newvalue]=useState({comment:"",star:"",productid:id ,username:props.name});
     const [ loading,newloading]=useState(true);
     const navigate=useNavigate();
 
-useEffect(()=> {async function fetch()
+useEffect(()=> { fetch();
+},[]
+);
+
+async function fetch()
 {try
 {
-   const response = await axios.post(`${URLS}/data/productbyid`,id);
+   const response = await axios.post(`${URLS}/data/productbyid`,{id});
    newloading(false)
     newdata(response.data);
 }
 catch(error)
 {
     console.log("erorr fetching products in details :", error);
-}} fetch();
-},[]
-);
+}}
+
+useEffect(() => {
+    let timeoutId;
+    if (emsg) {
+        timeoutId = setTimeout(() => {
+            setemsg('');
+        }, 3000); 
+    }
+    return () => {
+        clearTimeout(timeoutId);
+    };
+}, [emsg]);
+
+async function deletereview(id)
+{
+    try {
+        const response = await axios.delete(`${URLS}/data/commentdelete/${id}`);
+
+        toast(response.data.message);
+        fetch();
+
+    } catch (error) {
+        console.error('error deleteing review :', error);
+
+    }}   
+
+
+async function review()
+{
+    if(value.comment.length<1)
+    setemsg("Please write a review to submit")
+    else{
+    try {
+        const response = await axios.post(`${URLS}/data/comment`,value);
+
+        toast(response.data.message);
+        newvalue({ ...value, comment: "", star: "" });
+        fetch();
+
+    } catch (error) {
+        console.error('Error submitting review:', error);
+
+    }}
+}
 
 if (loading) {
     return (<LoadingPage/>)
@@ -52,6 +102,51 @@ else
             <button className="add-to-cart-button">Add to Cart</button>
         </div>
     </div>
+    <div className="comment-section">
+    <div className="add-comment">
+            <h3>Write a Review</h3>
+            {emsg && (<Alert severity="error">
+                {emsg}
+    </Alert> )}
+            <p>Your Review:</p>
+                <textarea rows="4" placeholder="Your Comment" name="comment" value={value.comment} onChange={(e)=>newvalue({
+    ...value, [e.target.name]:e.target.value})}></textarea>
+                <div className="rating">
+                Rating: <input type="number" placeholder='1' name="star" min="1" max="5" pattern="[1-5]*" value ={value.star} onInput={(e) => {
+        const value = parseInt(e.target.value);
+        if (isNaN(value) || value < 1) {
+            e.target.value = '1';
+        } else if (value > 5) {
+            e.target.value = '5';
+        }
+    }} onChange={(e)=>newvalue({
+    ...value, [e.target.name]:e.target.value
+  })}/>
+           
+                <button className="submit-comment" onClick={review}>Submit Review</button> </div>
+            </div>
+            <h3>Customer Reviews :</h3>
+
+            <div className="user-comments">
+
+                {data.comments &&data.comments.length>0? ( data.comments.slice().reverse().map((comment, index) => (
+                    <div key={index} className="comment">
+                   {comment.star && <div className="comment-rating">Rating:  {comment.star}</div>}
+                        
+                        <div className="comment-content" >{comment.comment}</div>
+                        <div className="comment-user">~ {comment.name}</div>
+                        {comment.name === props.name && (
+                            <div className="edit-delete-container">
+                    <button className="delete-button" onClick={()=>deletereview(data.comments[index]._id)}>Delete</button>
+                </div>
+            )}
+                    </div>
+                ))):
+               ( <h3>No Reviews Yet</h3>)}
+            </div>
+           
+        </div>
+
         </div>
   )
-}
+                        }

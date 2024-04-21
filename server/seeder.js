@@ -12,7 +12,7 @@ async function initialImport()
 {
     try{
 
-connectDb();
+await connectDb();
         await Product.deleteMany();
         await User.deleteMany();
         await Product.insertMany(data);
@@ -25,9 +25,9 @@ connectDb();
     }
     finally{
 
-disconnectDb();
+await disconnectDb();
     }
 
 };
 
-initialImport();
+await initialImport();

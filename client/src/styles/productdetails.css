@@ -3,12 +3,11 @@
     margin: 0;
     padding: 0;
     margin-top: 100px;
-    max-height: 38rem;
 }
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 20px 20px 0px 20px;
     display: flex;
     align-items: flex-start;
    
@@ -23,7 +22,7 @@
     height: 100%;
 }
 .product-details {
-    height: 30rem;
+    height: 27rem;
     flex: 1;
 }
 .product-name {
@@ -86,4 +85,107 @@
 }
 .go-back-button:hover {
     background-color: #0056b3;
+}
+.comment-section{
+    margin-left: 50px;
+}
+.comment-section h3{
+   font-weight: 550;
+   margin-bottom: 10px;
+}
+.comment-section p{
+   margin-bottom: 10px;
+}
+
+.user-comments {
+    margin: 30px;
+    margin-left: 0;
+    margin-bottom: 70px;
+
+}
+
+.comment {
+    position: relative;
+    margin-bottom: 20px;
+    padding: 25px;
+    color: grey;
+    border-radius: 10px;
+    border:solid 0.5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.comment-user {
+    margin-top: 5px;
+    color: grey;
+}
+
+.comment-rating {
+    color: #888;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+.rating{
+    margin-bottom: 20px;
+}
+.rating input{
+    width: 40px;
+    height: 30px;
+    border-radius: 7px;
+}
+.add-comment h3{
+    font-weight: 550;
+}
+.add-comment textarea {
+    width: calc(100% - 22px);
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.add-comment textarea {
+    resize: vertical;
+    margin-right: 30px;
+}
+
+.add-comment .submit-comment {
+    background-color: #007bff;
+    color: white;
+    margin-left: 78rem;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-comment .submit-comment:hover {
+    background-color: #0056b3;
+}
+.edit-delete-container {
+    position: absolute;
+    bottom: 10px;
+    right: 0;
+}
+
+.edit-button,
+.delete-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 5px 10px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.delete-button{
+    background-color: red;
+}
+
+.edit-button:hover{
+    background-color: #0056b3;
+}
+
+.delete-button:hover {
+    background-color: rgb(189, 12, 12);
 }

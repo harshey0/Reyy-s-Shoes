@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": " concurrently \"cd client && npm start\" \"cd server && npm start\""
+    "start": " concurrently \"cd client && npm start\" \"cd server && npm start\"",
+    "import": "cd server  && npm run import",
+    "schema": "cd server  && npm run schema"
   },
   "keywords": [],
   "author": "",
