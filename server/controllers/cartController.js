@@ -1,4 +1,27 @@
 import User from "../models/userModel.js";
+import Product from "../models/productModel.js"
+
+export  default  async function cart(req,res)
+{
+    const {username} = req.body;
+
+    try {
+        const user = await User.findOne({username});
+        const cartItems=user.cart;
+        const cartData = await Promise.all(cartItems.map(async (cartItem) => {
+            const product = await Product.findOne({ _id: cartItem.product });
+            return { product, quantity: cartItem.quantity };
+          }));
+      
+          res.send({ cartData });
+
+    } catch (error) {
+        console.error('Error fetching cart:', error);
+        res.send({ message: 'Failed to fetch cart' });
+    }
+}
+
+
 
 
 export async function cartadd(req,res)
@@ -6,9 +29,6 @@ export async function cartadd(req,res)
     const {id , quantity , username} = req.body;
 
     try {
-
-            
-
         const user = await User.findOne({username});
         const existingProduct = user.cart.find(item => item.product.toString() === id);
         if(existingProduct)
@@ -34,23 +54,18 @@ export async function cartadd(req,res)
 export async function cartdelete(req,res)
 {
     const {id} = req.params;
+    const {username} = req.body;
 
     try {
-        const product = await Product.findOne({ "comments._id":id});
+        const user = await User.findOne({ username});
 
-        if (!product) {
-            return res.send({ message: 'Product not found' });
-        }
-        const updatedComments = product.comments.filter(comment => comment._id.toString() !== id);
-        console.log(updatedComments);
-
-        product.comments = updatedComments;
-        await product.save();
-
-
-        res.send({ message: 'Review deleted successfully' });
+        const updatedCart = user.cart.filter(cart => cart.product.toString() !== id);
+        user.cart = updatedCart;
+        await user.save();
+        res.send({ message: 'Item removed from cart' });
+        
     } catch (error) {
         console.error('Error deleting review:', error);
-        res.send({ message: 'Failed to delete review' });
+        res.send({ message: 'Failed to remove item' });
     }
 }

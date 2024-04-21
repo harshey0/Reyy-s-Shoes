@@ -1,4 +1,134 @@
-.cart{
+.cart-container {
+    position: relative;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 110px;
+    margin-left: 50px;
+  }
+  
+  .cart-header {
     display: flex;
-    margin-top: 100px;
-}
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .cart-header h2 {
+    font-weight: 530;
+  }
+  
+  .subtotal {
+    position: absolute;
+    top: 0;
+    right: 20px;
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+    width: 350px;
+  }
+
+
+  .subtotal-heading {
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: x-large;
+    color: black;
+    margin-bottom: 5px;
+  }
+  .subtotal p{
+    margin-top: 10px;
+    color: grey;
+  }
+  
+  
+  
+  .empty-cart-message {
+    font-style: italic;
+    font-size: xx-large;
+    margin-left: 450px;
+    margin-top: 180px;
+  }
+  
+  .proceed-to-checkout {
+    margin-top: 20px;
+    background-color: #007bff;
+    color: white;
+    font-size: large;
+    border: none;
+    padding:15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .proceed-to-checkout:hover {
+    background-color: #0056b3;
+  }
+  
+  .cart-item {
+    display: flex;
+    padding: 10px;
+    margin-bottom: 20px;
+    width: 450px;
+    position: relative;
+    height: 180px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .productimage {
+    width: 220px;
+    height: 150px;
+    object-fit: contain; 
+  }
+  
+  .productdetails {
+    padding: 20px;
+  }
+  .producttitle {
+    font-size: 21px;
+    font-weight: 550;
+  }
+  
+  .productimage,
+  .producttitle:hover {
+    cursor: pointer;
+  }
+  
+  
+  .productprice {
+    margin-top: 15px;
+    font-size: 16px;
+    color: rgb(86, 80, 80);
+    font-size: large;
+  }
+  
+  .quantity-remove {
+    display: flex;
+    align-items: center;
+  }
+  
+  .quantity {
+    font-size: 16px;
+
+    color: rgb(86, 80, 80);
+    font-size: large;
+  }
+  
+  .remove-button {
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .remove-button:hover {
+    background-color: #c82333;
+  }

@@ -190,3 +190,15 @@
 .delete-button:hover {
     background-color: rgb(189, 12, 12);
 }
+.seller
+{
+    font-size: 18px;
+}
+
+.comment-timestamp {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 12px; 
+    color: gray; 
+  }

@@ -89,6 +89,18 @@ async function review()
 
     }}
 }
+const formatTimestamp = (timestamp) => {
+    const date = new Date(timestamp);
+    const options = {
+        hour: 'numeric',
+        minute: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+        hour12: true,
+    };
+    return date.toLocaleString('en-US', options); 
+};
 
 if (loading) {
     return (<LoadingPage/>)
@@ -97,20 +109,20 @@ if (loading) {
 else
   return (
     <div className='details'>
-    <button className="go-back-button" onClick={()=>navigate("/")}>Go Back</button>
+    <button className="go-back-button" onClick={()=>navigate(-1)}>Go Back</button>
     <div className="container">
         <div className="product-image">
             <img src={data.img} alt="Product Image"/>
         </div>
         <div className="product-details">
             <div className="product-name">{data.title}</div>
-            <div className="product-company">{data.company} {data.category} -:</div>
+            <div className="product-company">{data.company} {data.category} ~ <span className='seller'> <span>by </span> {data.seller}</span></div>
             <div className="product-description">{data.description}</div>
             <div className="product-price">Price: <del>{data.prevPrice}</del> {data.newPrice}</div>
             <div className="product-stock">In Stock: {data.inStock}</div>
             <div className="product-rating">Rating:  {data.star}   {data.reviews}</div>
             <div className="product-quantity">
-                Quantity: <input type="number" placeholder='1' min="1" pattern="[0-9]*" value={quantity} onChange={(e)=>setquantity(e.target.value)}/>
+                Quantity: <input type="number" placeholder='1' min="1" max="10" pattern="[1-9]*" value={quantity}  onChange={(e)=>{ let value = parseInt(e.target.value);if(value>10) value = value%10;if(value===0) value=1;e.target.value = value; setquantity(value)}}/>
             </div>
             <button className="add-to-cart-button" onClick={cart}>Add to Cart</button>
         </div>
@@ -122,19 +134,9 @@ else
                 {emsg}
     </Alert> )}
             <p>Your Review:</p>
-                <textarea rows="4" placeholder="Your Comment" name="comment" value={value.comment} onChange={(e)=>newvalue({
-    ...value, [e.target.name]:e.target.value})}></textarea>
+                <textarea rows="4" placeholder="Your Comment" name="comment" value={value.comment} onChange={(e)=>newvalue({...value , comment:e.target.value})}></textarea>
                 <div className="rating">
-                Rating: <input type="number" placeholder='1' name="star" min="1" max="5" pattern="[1-5]*" value ={value.star} onInput={(e) => {
-        const value = parseInt(e.target.value);
-        if (isNaN(value) || value < 1) {
-            e.target.value = '1';
-        } else if (value > 5) {
-            e.target.value = '5';
-        }
-    }} onChange={(e)=>newvalue({
-    ...value, [e.target.name]:e.target.value
-  })}/>
+                Rating: <input type="number" placeholder='1' name="star" min="1" max="5" pattern="[1-5]*" value ={value.star} onChange={(e)=>{ let val = parseInt(e.target.value);if(val>10) val = val%10;if (val > 5 ) { val = 5;}  if(val===0) val=1;e.target.value = val; newvalue({ ...value , star:val})}}/>
            
                 <button className="submit-comment" onClick={review}>Submit Review</button> </div>
             </div>
@@ -148,6 +150,7 @@ else
                         
                         <div className="comment-content" >{comment.comment}</div>
                         <div className="comment-user">~ {comment.name}</div>
+                        <div className="comment-timestamp">{formatTimestamp(comment.updatedAt)}</div>
                         {comment.name === props.name && (
                             <div className="edit-delete-container">
                     <button className="delete-button" onClick={()=>deletereview(comment._id)}>Delete</button>
