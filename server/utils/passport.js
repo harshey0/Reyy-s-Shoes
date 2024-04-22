@@ -21,11 +21,7 @@ dotenv.config();
         }
       ));
 
-
-
-
-
-              export function callback(req, res) {
+              export function callback(req, res, next) {
                 passport.authenticate("google", async (err, user, info) => {
                     if (err) {
                         console.error("Authentication error:", err);
@@ -41,11 +37,11 @@ dotenv.config();
 
                     try{
                     const token = await googleAuth(fname,email);
-                    res.redirect(`${process.env.URLC}?token=${token}`);
+                    res.redirect(`${process.env.URLC}/?token=${token}`);
                     }
                     catch (error) {
                       console.error("Error while processing authentication:", error);
-                }})(req, res); 
+                }})(req, res,next); 
             }
 
 

@@ -2,6 +2,7 @@ import User from "../models/userModel.js";
 import generateToken from "../utils/Token.js";
 import bcryptjs from "bcryptjs";
 import checkDetails from "../utils/rules.js";
+import mail from "../utils/nodemailer.js";
 
 
 export default async function profile(req,res){
@@ -45,6 +46,19 @@ export default async function profile(req,res){
         user.password=pass;
         await user.save();
         const token = generateToken(user.username,user.isAdmin,user.email,"10d");
+        const subject = "Profile Update Successful";
+const message = `Dear ${user.username},
+
+We are writing to inform you that your profile has been successfully updated at Reyy's Shoes.
+
+If you have any questions or concerns regarding your profile or any other matter, please feel free to contact us. We are here to assist you.
+
+Thank you for choosing Reyy's Shoes.
+
+Best regards,
+Reyy's Shoes Team`;
+
+            mail(user.email,message,subject);
         return res.send({update:true,message:"Profile updated successfully",user:user,token:token})
         
         }}

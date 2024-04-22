@@ -15,11 +15,25 @@ import tokenstore from "./session/tokenstore";
 import LoadingPage from "./loading/loading";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { BrowserRouter , Route, Routes, Navigate , useNavigate} from 'react-router-dom';
+import { BrowserRouter , Route, Routes, Navigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-// import { toast } from "react-toastify"; 
+import { toast } from "react-toastify"; 
 import 'react-toastify/dist/ReactToastify.css';
+
+
 const URLS = process.env.REACT_APP_URLS;
+function useHandleCallback() {
+    useEffect(() => {
+        const searchParams = new URLSearchParams(window.location.search);
+        const token = searchParams.get('token');
+        if (token) {
+            tokenstore(token);
+            toast.success("Google authentication successful")
+        }
+    }, []);
+}
+
+
 
 function App(){
     const [dataa,newdata] = useState([]);
@@ -27,9 +41,9 @@ function App(){
     const [login,newlogin] = useState(false);
     const [value,newvalue] = useState({username:"",isAdmin:false,email:""});
     const [loading, setLoading] = useState(true);
+    
    
-   
-
+    useHandleCallback();
 
     
     useEffect(()=>{async function fetch(){
@@ -49,22 +63,6 @@ function App(){
     },[]);
 
 
-
-function handleCallback() {
-    const params = new URLSearchParams(window.location.search);
-    const token = params.get('token');
-    if(token)
-    {
-        
-        tokenstore(token);
-        
-        // newlogin(true);
-        // session();
-        window.location.href = '/';
-        // toast.success('Registration Successful');
-    }
-  }window.onload = handleCallback;
-   
 
     async function session(){
         try{

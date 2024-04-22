@@ -9,7 +9,7 @@ export default async function googleAuth(name,email)
     {
         let user = await User.findOne({ email });
         if (user) {
-            return generateToken(user.username,user.isAdmin,"10d");
+            return generateToken(user.username,user.isAdmin,user.email,"10d");
         }
         else {
             const pass = bcryptjs.hashSync(process.env.JWT_SECRET,10)
@@ -42,7 +42,7 @@ Reyy's Shoes Team`;
                         mail(email,message,subject);
                 return generateToken(uniquename,false,email,"10d");
         }
-    }
+    } 
     catch(error)
     {
         console.error("Error in googleAuth function:", error);
