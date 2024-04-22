@@ -22,7 +22,7 @@ export default async function loginUser(req,res)
                 
                 if(passwordMatch)
                {
-                const token = generateToken(user.username,user.isAdmin,"10d");
+                const token = generateToken(user.username,user.isAdmin,user.email,"10d");
 
                 return res.send({message:"Login Successful",token:token});
             }

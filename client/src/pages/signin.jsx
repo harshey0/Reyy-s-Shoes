@@ -46,6 +46,9 @@ function change(e)
 async function handle(event)
 {
   event.preventDefault();
+  if(!value.username.trim()||!value.password.trim())
+  setemsg("Please enter login details");
+  else{
   try {
     const response = await axios.post(`${URLS}/user/login`, value , {
       withCredentials: true,
@@ -67,7 +70,7 @@ async function handle(event)
     console.error("Signin error:", error.response.data.message);
     setemsg(error.response.data.message);
   }
-}
+}}
 
   return (
    <Container className="login-container" >

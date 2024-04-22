@@ -43,6 +43,9 @@ function change(e)
         async function handle(event)
 {
   event.preventDefault();
+  if(!value.username.trim()||!value.password.trim()||!value.email.trim()||!value.cpassword.trim())
+  setemsg("Please enter all the details");
+  else{
   try {
     const response = await axios.post(`${URLS}/user/register`, value);
     console.log( response.data);
@@ -52,7 +55,7 @@ function change(e)
     console.error("Registration error:", error.response.data);
     setemsg(error.response.data);
   }
-}
+}}
 
   return (
     <Container className="signup-container" >

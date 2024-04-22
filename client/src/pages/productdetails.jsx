@@ -151,7 +151,7 @@ else
                         <div className="comment-content" >{comment.comment}</div>
                         <div className="comment-user">~ {comment.name}</div>
                         <div className="comment-timestamp">{formatTimestamp(comment.updatedAt)}</div>
-                        {comment.name === props.name && (
+                        {(props.admin || comment.name === props.name) && (
                             <div className="edit-delete-container">
                     <button className="delete-button" onClick={()=>deletereview(comment._id)}>Delete</button>
                 </div>

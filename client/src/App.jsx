@@ -25,8 +25,7 @@ function App(){
     const [dataa,newdata] = useState([]);
     const [data,newdat] = useState([]);
     const [login,newlogin] = useState(false);
-    const [isAdmin,newadmin] = useState(false);
-    const [username,newusername] = useState("");
+    const [value,newvalue] = useState({username:"",isAdmin:false,email:""});
     const [loading, setLoading] = useState(true);
    
    
@@ -76,10 +75,9 @@ function handleCallback() {
          if(res.data.message && res.data.message==="yes")
          {
             
-            const {username , admin } = res.data.decoded;
-            console.log("yes",username, admin)
-            newadmin(admin);
-            newusername(username);
+            const {username , admin , email } = res.data.decoded;
+            console.log("yes",username, admin,email)
+            newvalue({isAdmin:admin,email:email,username:username });
            return (true);
         }
             else
@@ -147,7 +145,7 @@ return(
     
     <BrowserRouter>
 
-        <Navigation onAdd={change1} logout={()=>newlogin(false)} is={login} admin={isAdmin} name={username}/>
+        <Navigation onAdd={change1} logout={()=>newlogin(false)} is={login} admin={value.isAdmin} name={value.username}/>
         <ToastContainer />
         <Routes> 
       
@@ -161,10 +159,10 @@ return(
 
 
          
-         {login ? (<><Route path="/cart" element={<> <Cart name={username}/> </>} />
-         <Route path="/checkout" element={<> <Checkout name={username}/> </>} />
-         <Route path="/profile" element={<> <Profile/> </>} />
-         <Route path="/details/:id" element={<> <Productdetails name={username}/> </>} /></>):(<>
+         {login ? (<><Route path="/cart" element={<> <Cart name={value.username}/> </>} />
+         <Route path="/checkout" element={<> <Checkout name={value.username}/> </>} />
+         <Route path="/profile" element={<> <Profile  name={value.username} em={value.email} set={session}/> </>} />
+         <Route path="/details/:id" element={<> <Productdetails name={value.username} admin={value.isAdmin}/> </>} /></>):(<>
          <Route path="/signin" element={<> <Signin login={()=>newlogin(true)} set={session}/> </>} />
          <Route path="/signup" element={<> <Signup/> </>} />
          <Route path="/forget" element={<> <Forget/> </>} />

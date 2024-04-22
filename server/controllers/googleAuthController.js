@@ -40,7 +40,7 @@ If you have any questions or need assistance, feel free to reach out to us at an
 Best regards,
 Reyy's Shoes Team`;
                         mail(email,message,subject);
-                return generateToken(uniquename,false,"10d");
+                return generateToken(uniquename,false,email,"10d");
         }
     }
     catch(error)

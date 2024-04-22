@@ -4,6 +4,7 @@ import registerUser from "../controllers/registerController.js";
 import {verifyToken} from "../utils/Token.js"
 import {forget , reset} from "../controllers/passwordController.js"
 import {callback} from "../utils/passport.js"
+import profile , {update} from "../controllers/profileController.js";
 
 
 const router = express.Router();
@@ -13,9 +14,10 @@ router.post("/verify",verifyToken)
 router.post("/logout",logoutUser);
 router.post("/forget",forget)
 router.post("/reset",reset)
-
 router.get("/google/callback",callback);
+router.post("/details",profile)
+router.put("/update",update)
 
 
 
-export default router;
+export default router; 
