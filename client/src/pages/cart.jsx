@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import LoadingPage from '../loading/loading';
 import { toast  } from 'react-toastify';
+import {loadStripe} from '@stripe/stripe-js';
 import "../styles/cart.css"
 
 export default function Cart(props){
@@ -15,7 +16,22 @@ export default function Cart(props){
 
   useEffect(()=>  {fetch();},[]);
 
-  async function fetch(res,req){
+  async function stripe()
+  {
+    try{
+      const stripe = await loadStripe(process.env.REACT_APP_STRIPE_KEY)
+      const response = await axios.post(`${URLS}/data/stripe`,cartItems)
+      const {sessionid}=response.data;
+      const result = await stripe.redirectToCheckout({sessionId:sessionid})
+      console.log(result);
+    }
+    catch(error)
+    {
+      console.log(error);
+    }
+  }
+
+  async function fetch(){
     try
     {
       const response = await axios.post(`${URLS}/data/cart`,{username})
@@ -56,7 +72,7 @@ export default function Cart(props){
                   <h3 className="subtotal-heading">Subtotal ~</h3>
                   <p>Total Items: {getTotalItems()}</p>
                   <p>Total Price: ${getTotalPrice()}</p>
-                  <button className="proceed-to-checkout" onClick={()=>navigate("/checkout")}>Proceed to Checkout</button>
+                  <button className="proceed-to-checkout" onClick={stripe}>Proceed to Checkout</button>
                 </div>
                 <button className="continue-shopping-button2" onClick={()=>navigate("/")}>Continue Shopping</button> </div>
               )}
