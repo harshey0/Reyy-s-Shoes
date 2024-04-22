@@ -1,7 +1,8 @@
 import dotenv from "dotenv";
-dotenv.config();
 import Stripe from 'stripe';
+import generateToken from "./Token.js";
 
+dotenv.config();
 const stripe = new Stripe(process.env.STRIPE_SECTRET);
 
 export default async function stripePayment(req,res)
@@ -22,12 +23,13 @@ export default async function stripePayment(req,res)
                     
         }));
     try{
+        const token = generateToken("reyy","true","dummy@gmail.com","2m")
         const session = await stripe.checkout.sessions.create({
             payment_method_types:["card"], 
             mode:"payment",
             line_items:lineItems, 
-            success_url:process.env.URLC,
-            cancel_url:process.env.URLC,
+            success_url:`${process.env.URLC}/success/${token}`,
+            cancel_url:`${process.env.URLC}/fail/${token}`,
             
         })
         console.log(session.id)

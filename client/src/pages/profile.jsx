@@ -13,15 +13,28 @@ export default function Profile(props) {
   const name=props.name;
   const URLS = process.env.REACT_APP_URLS;
   const [ovalue,setovalue]=useState({username:props.name, email:props.em})
+  const [loading, setloading] = useState(true);
   const [value, setvalue] = useState({username:props.name, email:props.em ,password:"" ,confirmPassword:""});
   const [editMode, setEditMode] = useState(false);
   const [emsg,setemsg]= useState("")
-  const [orders, setOrders] = useState([
-    { id: 1, orderId: 'eb9232dfba', date: '2024-04-22', total: '$100', delivered: 'Yes' },
-  ]);
+  const [orders, setOrders] = useState([]);
   const navigate= useNavigate();
  
-
+useEffect(()=>{
+  async function fetch()
+  {
+    try{
+      const response=await axios.post(`${URLS}/data/userorder`,{name});
+      setOrders(response.data);
+      console.log(response.data);
+      setloading(false)
+    }
+    catch(error)
+    {
+      console.log(error)
+    }
+  } fetch();
+},[])
 
   useEffect(() => {
     if (emsg) {
@@ -57,10 +70,24 @@ async function update(event){
         console.log(error);
     }
   };
+  function calculateTotalPrice(products) {
+    let totalPrice = 0;
+    
+    products.forEach(product => {
+      totalPrice += product.price * product.quantity;
+    });
+  
+    return totalPrice;
+  };
 
+
+
+  if(loading)
+  return (<LoadingPage/>)
+  else
   return (
     <div className="profile-management-container">
-     <button className="go-back-button-profile" onClick={()=>navigate(-1)}>Go Back</button>
+     <button className="go-back-button-profile" onClick={()=>navigate("/")}>Go Back</button>
       <div className="profile-details">
       {emsg && (<Alert severity="error" style={{ maxWidth: '300px' }}>
                 {emsg}
@@ -130,14 +157,20 @@ async function update(event){
             </tr>
           </thead>
           <tbody>
-            {orders.map(order => (
-              <tr key={order.id}>
-                <td>{order.orderId}</td>
-                <td>{order.date}</td>
-                <td>{order.total}</td>
-                <td>{order.delivered}</td>
-              </tr>
-            ))}
+          {orders.map(order => {
+         const totalPrice = calculateTotalPrice(order.products);
+         const orderId = order._id.toString().slice(-19);
+         const formattedDate = new Date(order.createdAt).toLocaleDateString("en-GB");
+         console.log(orderId)
+           return (
+         <tr key={order._id}>
+          <td>{orderId}</td>
+         <td>{formattedDate}</td>
+         <td>${totalPrice}</td>
+         <td>{order.status}</td>
+          </tr>
+    );
+  })}
           </tbody>
         </table>
       </div>

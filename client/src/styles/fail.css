@@ -1,0 +1,53 @@
+
+.fail-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 87vh;
+}
+
+.fail-content {
+  text-align: center;
+}
+
+.fail-heading {
+  color: #FF5722;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.fail-message {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.continue-shopping-link {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.continue-shopping-link:hover {
+  background-color: #0056b3;
+}
+
+.instructions-title {
+  margin-top: 50px;
+  color: #333;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.instructions-list {
+  text-align: left;
+}
+
+.instructions-list li {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}

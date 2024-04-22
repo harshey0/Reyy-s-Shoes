@@ -5,6 +5,8 @@ import connectDb  from "./config/db.js";
 import dataRoute from "./routes/dataRoute.js"
 import userRoute from "./routes/userRoute.js"
 import passport from "./utils/passport.js";
+import cron from 'node-cron';
+import  updateOrderStatusAndFindAffectedUsers  from './utils/nodeCron.js';
 
 
 dotenv.config();
@@ -24,6 +26,16 @@ app.use(cors({
 app.get("/",(req,res)=> res.send("Reyy's Shoes is running smoothly"));
 app.use("/data", dataRoute);
 app.use("/user",userRoute);
+
+
+cron.schedule('0 */8 * * *', async () => {
+    try {
+      await updateOrderStatusAndFindAffectedUsers();
+    } catch (error) {
+      console.error('Error occurred:', error);
+    }
+  });
+  
 
 
 app.listen(PORT,()=>{console.log(`running on port ${PORT}`)});

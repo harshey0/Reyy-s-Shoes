@@ -6,7 +6,6 @@ import Sidebar from "./sidebar/sidebar";
 import Signin from "./pages/signin";
 import Signup from "./pages/signup";
 import Cart from "./pages/cart";
-import Checkout from "./pages/checkout";
 import Profile from "./pages/profile";
 import Productdetails from "./pages/productdetails";
 import Forget from "./pages/forget";
@@ -19,6 +18,8 @@ import { BrowserRouter , Route, Routes, Navigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { toast } from "react-toastify"; 
 import 'react-toastify/dist/ReactToastify.css';
+import SuccessPage from "./stripe/successPage";
+import FailPage from "./stripe/failPage";
 
 
 const URLS = process.env.REACT_APP_URLS;
@@ -158,7 +159,8 @@ return(
 
          
          {login ? (<><Route path="/cart" element={<> <Cart name={value.username}/> </>} />
-         <Route path="/checkout" element={<> <Checkout name={value.username}/> </>} />
+         <Route path="/success/:token" element={<> <SuccessPage name={value.username}/> </>} />
+         <Route path="/fail/:token" element={<> <FailPage/> </>} />
          <Route path="/profile" element={<> <Profile  name={value.username} em={value.email} set={session}/> </>} />
          <Route path="/details/:id" element={<> <Productdetails name={value.username} admin={value.isAdmin}/> </>} /></>):(<>
          <Route path="/signin" element={<> <Signin login={()=>newlogin(true)} set={session}/> </>} />

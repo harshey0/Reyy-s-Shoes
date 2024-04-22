@@ -16,7 +16,7 @@ export async function forget(req,res)
     if(!user)
     return res.send({message:"This email is not registered"});
     else{
-        const token = generateToken(user.username,user.isAdmin,"5m");
+        const token = generateToken(user.username,user.isAdmin,user.email,"5m");
         
     const link = `${process.env.URLC}/reset/${user._id}/${token}`;
     const subject = "Password Reset Request";
