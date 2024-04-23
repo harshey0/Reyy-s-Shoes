@@ -25,9 +25,9 @@ useEffect(()=>{
   {
     try{
       const response=await axios.post(`${URLS}/data/userorder`,{name});
-      setOrders(response.data);
-      console.log(response.data);
       setloading(false)
+      setOrders(response.data);
+      // console.log(response.data);
     }
     catch(error)
     {

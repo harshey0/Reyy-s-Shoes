@@ -23,13 +23,15 @@ export default async function stripePayment(req,res)
                     
         }));
     try{
-        const token = generateToken("reyy","true","dummy@gmail.com","2m")
+        const tokens = generateToken("reyy","true","success","2m")
+        const tokenf = generateToken("reyy","true","fail","2m")
+        // console.log(`${process.env.URLC}/success/${tokens}`);
         const session = await stripe.checkout.sessions.create({
             payment_method_types:["card"], 
             mode:"payment",
             line_items:lineItems, 
-            success_url:`${process.env.URLC}/success/${token}`,
-            cancel_url:`${process.env.URLC}/fail/${token}`,
+            success_url:`${process.env.URLC}/success/${tokens}`,
+            cancel_url:`${process.env.URLC}/fail/${tokenf}`,
             
         })
         // console.log(session.id)

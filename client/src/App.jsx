@@ -74,7 +74,6 @@ function App(){
             });
          if(res.data.message && res.data.message==="yes")
          {
-            
             const {username , admin , email } = res.data.decoded;
             // console.log("yes",username, admin,email)
             newvalue({isAdmin:admin,email:email,username:username });
@@ -163,7 +162,7 @@ return(
          <Route path="/success/:token" element={<> <SuccessPage name={value.username}/> </>} />
          <Route path="/fail/:token" element={<> <FailPage/> </>} />
          <Route path="/profile" element={<> <Profile  name={value.username} em={value.email} set={session}/> </>} />
-         <Route path="/order/:id" element={<> <Orderdetails  name={value.username} em={value.email}/> </>} />
+         <Route path="/order/:id" element={<> <Orderdetails /> </>} />
          <Route path="/details/:id" element={<> <Productdetails name={value.username} admin={value.isAdmin}/> </>} /></>):(<>
          <Route path="/signin" element={<> <Signin login={()=>newlogin(true)} set={session}/> </>} />
          <Route path="/signup" element={<> <Signup/> </>} />

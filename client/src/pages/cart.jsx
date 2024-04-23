@@ -23,8 +23,7 @@ export default function Cart(props){
       const stripe = await loadStripe(process.env.REACT_APP_STRIPE_KEY)
       const response = await axios.post(`${URLS}/data/stripe`,cartItems)
       const {sessionid}=response.data;
-      const result = await stripe.redirectToCheckout({sessionId:sessionid})
-      newloading(false);
+      await stripe.redirectToCheckout({sessionId:sessionid})
     }
     catch(error)
     {
