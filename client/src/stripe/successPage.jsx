@@ -34,7 +34,7 @@ async function order()
 {
   try{
     const response =await  axios.post(`${URLS}/data/addorder`,{name});
-    console.log(response.data.message);
+    // console.log(response.data.message);
   }
   catch(error)
   {

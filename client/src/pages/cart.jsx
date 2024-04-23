@@ -25,7 +25,6 @@ export default function Cart(props){
       const {sessionid}=response.data;
       const result = await stripe.redirectToCheckout({sessionId:sessionid})
       newloading(false);
-      console.log(result);
     }
     catch(error)
     {

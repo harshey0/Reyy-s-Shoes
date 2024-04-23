@@ -8,7 +8,7 @@ const stripe = new Stripe(process.env.STRIPE_SECTRET);
 export default async function stripePayment(req,res)
 {
         const items = req.body;
-        console.log(items);
+        // console.log(items);
         const lineItems = items.map((item)=>({
             price_data:{currency:"usd",
                         product_data:{
@@ -32,7 +32,7 @@ export default async function stripePayment(req,res)
             cancel_url:`${process.env.URLC}/fail/${token}`,
             
         })
-        console.log(session.id)
+        // console.log(session.id)
         res.send({sessionid:session.id})
     }
         catch(error){

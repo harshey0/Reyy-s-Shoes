@@ -32,7 +32,7 @@ If you did not make this request, you can safely ignore this email. Your passwor
 Best regards,
 Reyy's Shoes Team`
     mail(email,message,subject);
-    console.log(link);
+    // console.log(link);
     return res.send({message:"Reset link is sent to this email"});
     }}
     catch(error)
@@ -79,7 +79,7 @@ Reyy's Shoes Team`;
             user.password = pass;
             await user.save();
 
-        console.log("password changed");
+        // console.log("password changed");
         return res.send("Password changed Successfully");
         
     
@@ -88,7 +88,7 @@ Reyy's Shoes Team`;
     catch(error)
     {
 
-        console.log("Password can't be changed :", error);
+        // console.log("Password can't be changed :", error);
         return res.send("Try later ",error);
     }
 

@@ -28,7 +28,7 @@ useEffect(() => {
       event.preventDefault();
       try {
         const response = await axios.post(`${URLS}/user/forget`,{email})
-        console.log( response.data.message);
+        // console.log( response.data.message);
         setemsg(response.data.message);
       } catch (error) {
         console.error("Error:", error.response.data.message);

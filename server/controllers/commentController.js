@@ -50,7 +50,7 @@ export async function commentdelete(req,res)
             return res.send({ message: 'Product not found' });
         }
         const updatedComments = product.comments.filter(comment => comment._id.toString() !== id);
-        console.log(updatedComments);
+        // console.log(updatedComments);
 
         product.comments = updatedComments;
         await product.save();

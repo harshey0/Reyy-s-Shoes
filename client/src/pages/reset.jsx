@@ -40,7 +40,7 @@ useEffect(() => {
          {
 
         const response = await axios.post(`${URLS}/user/reset`,value)
-        console.log( response.data);
+        // console.log( response.data);
         setemsg(response.data);
     }
     else

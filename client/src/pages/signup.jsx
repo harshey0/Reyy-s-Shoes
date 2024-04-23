@@ -48,7 +48,7 @@ function change(e)
   else{
   try {
     const response = await axios.post(`${URLS}/user/register`, value);
-    console.log( response.data);
+    // console.log( response.data);
     setemsg(response.data);
 
   } catch (error) {

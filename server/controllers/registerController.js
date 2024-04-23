@@ -40,7 +40,7 @@ Reyy's Shoes Team`;
             catch(error)
             {
 
-                console.log("Can't create account :", error);
+                // console.log("Can't create account :", error);
                 return res.send("Can't create account ",error);
             }
       

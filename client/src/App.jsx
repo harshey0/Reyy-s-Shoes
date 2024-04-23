@@ -76,7 +76,7 @@ function App(){
          {
             
             const {username , admin , email } = res.data.decoded;
-            console.log("yes",username, admin,email)
+            // console.log("yes",username, admin,email)
             newvalue({isAdmin:admin,email:email,username:username });
            return (true);
         }
