@@ -28,13 +28,13 @@ app.use("/data", dataRoute);
 app.use("/user",userRoute);
 
 
-cron.schedule('0 */8 * * *', async () => {
-    try {
-      await updateOrderStatusAndFindAffectedUsers();
-    } catch (error) {
-      console.error('Error occurred:', error);
-    }
-  });
+// cron.schedule('0 */8 * * *', async () => {
+//     try {
+//       await updateOrderStatusAndFindAffectedUsers();
+//     } catch (error) {
+//       console.error('Error occurred:', error);
+//     }
+//   });
   
 
 

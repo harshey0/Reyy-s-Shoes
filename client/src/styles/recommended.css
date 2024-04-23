@@ -1,12 +1,13 @@
 .button {
     margin-left: 5px;
     padding: 10px 20px;
-    border: 0.6px solid #ccc;
+    border: 2px solid #096bd4;
     border-radius: 5px;
     margin-top: 20px;
     background: transparent;
     color: #323232;
     cursor: pointer;
+    font-weight: 500;
     transition: background-color 0.3s ease; 
  }
  

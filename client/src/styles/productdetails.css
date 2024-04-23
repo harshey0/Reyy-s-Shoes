@@ -60,6 +60,7 @@
 }
 .product-quantity input{
     width: 40px;
+    border-color: #007bff;
     height: 30px;
     border-radius: 7px;
 }
@@ -110,7 +111,7 @@
     padding: 25px;
     color: grey;
     border-radius: 10px;
-    border:solid 0.5px;
+    border:solid 0.5px #007bff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -130,6 +131,7 @@
 .rating input{
     width: 40px;
     height: 30px;
+    border-color: #007bff;
     border-radius: 7px;
 }
 .add-comment h3{
@@ -139,7 +141,7 @@
     width: calc(100% - 22px);
     margin-bottom: 15px;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #007bff;
     border-radius: 5px;
     font-size: large;
 }

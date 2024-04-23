@@ -42,7 +42,7 @@
   .order-table th,
   .order-table td {
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #0056b3;
     text-align: left;
 
   }
@@ -61,7 +61,7 @@
   }
   
   .profile-form {
-    border: 1px solid #ccc;
+    border: 1px solid #0056b3;
     padding: 20px;
     width: 300px;
     position: relative;
@@ -85,7 +85,7 @@
     padding: 8px;
     height: 40px;
     font-size: 16px;
-    border: 1px solid #ccc;
+    border: 1px solid #0056b3;
     border-radius: 4px;
     box-sizing: border-box;
     transition: border-color 0.3s ease;
