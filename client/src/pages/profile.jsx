@@ -34,7 +34,7 @@ useEffect(()=>{
       console.log(error)
     }
   } fetch();
-},[])
+},[URLS ,name])
 
   useEffect(() => {
     if (emsg) {
@@ -161,13 +161,13 @@ async function update(event){
          const totalPrice = calculateTotalPrice(order.products);
          const orderId = order._id.toString().slice(-19);
          const formattedDate = new Date(order.createdAt).toLocaleDateString("en-GB");
-         console.log(orderId)
+         /* console.log(orderId) */
            return (
-         <tr key={order._id}>
+         <tr key={order._id} onClick={()=>navigate(`/order/${order._id}`)}>
           <td>{orderId}</td>
          <td>{formattedDate}</td>
          <td>${totalPrice}</td>
-         <td>{order.status}</td>
+         <td className='status'>{order.status}</td>
           </tr>
     );
   })}

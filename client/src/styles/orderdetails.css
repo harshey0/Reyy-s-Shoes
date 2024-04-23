@@ -1,0 +1,134 @@
+.order-details-container {
+  margin-top: 160px;
+  margin-left: 70px;
+  max-width: 800px;
+  padding: 20px;
+}
+
+.go-back-button-order {
+  position: absolute;
+  left: 40px;
+  top: 120px;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.go-back-button-order:hover {
+  background-color: #0056b3;
+}
+
+.order-details-container h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: 550;
+}
+.order-details-container span h3 {
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.order-items{
+  margin-top: 50px;
+}
+
+.orderitem {
+  display: flex;
+  margin-bottom: 30px;
+}
+
+.orderitem:hover{
+  cursor: pointer;
+  background-color: rgb(245, 245, 245);
+}
+
+.orderitem span {
+  float: right;
+}
+
+
+.orderitem img {
+  margin-top: 17px;
+  margin-right: 20px;
+  height: 10%;
+  width: 10%;
+}
+
+.orderitem h4 {
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.orderitem p {
+  width: 500px;
+  color: grey;
+  margin: 5px 0;
+}
+
+.order-details-container p {
+  margin: 10px 0;
+}
+
+.order-details-container a {
+  display: block;
+  margin-top: 20px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.order-details-container a:hover {
+  text-decoration: underline;
+}
+
+
+
+
+.invoice {
+  position: absolute;
+  top: 120px;
+  right: 20px;
+  width: 400px;
+  height: fit-content;
+  background-color: #f2f2f2;
+  padding: 20px;
+  border-radius: 4px;
+}
+.invoice h3 {
+  font-weight: 570;
+  color: #333;
+  
+  margin-bottom: 10px;
+}
+
+.invoice table {
+  width: 100%;
+}
+
+.invoice table th,
+.invoice table td {
+  text-align: left;
+}
+
+.invoice table th {
+  background-color: #f2f2f2;
+  padding-bottom: 10px;
+  font-weight: 600;
+}
+
+.invoice table td.total {
+  font-weight: bold;
+}
+.invoice table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px; 
+}
+
+td.total{
+  padding-top: 10px;
+  border-top: 1px solid #ccc;
+}

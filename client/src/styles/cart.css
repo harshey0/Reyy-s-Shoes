@@ -82,7 +82,7 @@
     margin-top: 130px;
     right:20px;
     width: 370px;
-    position: fixed;
+    position: absolute;
     background-color: #007bff;
     color: white;
     font-size: large;

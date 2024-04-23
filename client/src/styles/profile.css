@@ -1,10 +1,11 @@
 .profile-management-container {
     display: flex;
     margin-top: 110px;
+    min-height: 74.2vh;
   }
 
   .go-back-button-profile {
-    position: fixed;
+    position: absolute;
     left: 40px;
     top: 120px;
     border-radius: 5px;
@@ -15,7 +16,7 @@
     cursor: pointer;
 }
 
-.go-back-button:hover {
+.go-back-button-profile:hover {
     background-color: #0056b3;
 }
   
@@ -56,6 +57,7 @@
   
   .order-table tr:hover {
     background-color: #ddd;
+    cursor: pointer;
   }
   
   .profile-form {
@@ -68,6 +70,9 @@
   .form-group {
     height: 100px;
     width: 300px;
+  }
+  .status{
+    color: rgb(157, 49, 49);
   }
   
   .label-container {

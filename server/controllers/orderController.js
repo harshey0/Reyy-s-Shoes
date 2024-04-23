@@ -22,6 +22,37 @@ export default async function userOrder(req,res)
             console.log(error);
         }
 }
+export async function orderDetails(req,res)
+{
+    const {id}=req.params;
+        try{
+            const order = await Order.findOne({ _id: id });
+            const orderProducts = [];
+            for (const orderItem of order.products) {
+                const product = await Product.findOne({_id:orderItem.product});
+    
+                    orderProducts.push({
+                        productId: orderItem.product,
+                        title: product.title,
+                        description:product.description,
+                        quantity: orderItem.quantity,
+                        price: orderItem.price,
+                        img: product.img
+                    });
+                
+            }
+    
+            // console.log({ orderProducts ,status  });
+            res.send({ orderProducts});
+                
+            
+        }
+        catch(error)
+        {
+
+            console.log(error);
+        }
+}
 
 
 export async function addOrder(req,res)

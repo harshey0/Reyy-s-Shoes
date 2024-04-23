@@ -46,9 +46,9 @@ export async function reset(req,res)
     try
     {
         const {id,password,cpassword}=req.body;
-        const userExists = await User.findOne({_id:id});
+        const user = await User.findOne({_id:id});
 
-        const passwordMatch = await bcrypt.compare(password, userExists.password);
+        const passwordMatch = await bcrypt.compare(password, user.password);
                 
         if(passwordMatch)
         return res.send("New password can not be the same");
@@ -60,10 +60,24 @@ export async function reset(req,res)
         return res.send("Password should be atleast 6 characters long");
 
         else{
+            const subject = "Password Changed Successfully";
+const message = 
+`Dear ${user.username},
+
+This is a confirmation that your password for your Reyy's Shoes account has been successfully changed.
+
+If you made this change, you can safely ignore this email.
+
+If you did not make this change, please contact us immediately.
+
+Best regards,
+Reyy's Shoes Team`;
+
+            mail(user.email,message,subject);
             
             const pass = bcryptjs.hashSync(password,10)
-            userExists.password = pass;
-            await userExists.save();
+            user.password = pass;
+            await user.save();
 
         console.log("password changed");
         return res.send("Password changed Successfully");

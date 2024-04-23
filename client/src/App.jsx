@@ -13,6 +13,7 @@ import Reset from "./pages/reset";
 import tokenstore from "./session/tokenstore";
 import LoadingPage from "./loading/loading";
 import axios from "axios";
+import Orderdetails from "./pages/orderdetails";
 import { useState, useEffect } from "react";
 import { BrowserRouter , Route, Routes, Navigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
@@ -162,6 +163,7 @@ return(
          <Route path="/success/:token" element={<> <SuccessPage name={value.username}/> </>} />
          <Route path="/fail/:token" element={<> <FailPage/> </>} />
          <Route path="/profile" element={<> <Profile  name={value.username} em={value.email} set={session}/> </>} />
+         <Route path="/order/:id" element={<> <Orderdetails  name={value.username} em={value.email}/> </>} />
          <Route path="/details/:id" element={<> <Productdetails name={value.username} admin={value.isAdmin}/> </>} /></>):(<>
          <Route path="/signin" element={<> <Signin login={()=>newlogin(true)} set={session}/> </>} />
          <Route path="/signup" element={<> <Signup/> </>} />

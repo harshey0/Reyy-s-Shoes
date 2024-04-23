@@ -22,7 +22,7 @@ export default function SuccessPage(props) {
                   });
                if(res.data.message && res.data.message==="yes")
                {order(); setloading(false); }
-               else navigate(-1);
+               else navigate("/");
               }
           
           catch(error)
