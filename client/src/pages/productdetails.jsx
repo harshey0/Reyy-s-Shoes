@@ -14,7 +14,7 @@ export default function Productdetails(props) {
     const [emsg,setemsg]= useState("");
     const [quantity,setquantity]= useState(1);
     const [ data,newdata]=useState("");
-    const [ value,newvalue]=useState({comment:"",star:1,productid:id ,username:props.name});
+    const [ value,newvalue]=useState({comment:"",star:5,productid:id ,username:props.name});
     const [ loading,newloading]=useState(true);
     const navigate=useNavigate();
 
@@ -122,7 +122,7 @@ else
             <div className="product-stock">In Stock: {data.inStock}</div>
             <div className="product-rating">Rating:  {data.star}   {data.reviews}</div>
             <div className="product-quantity">
-                Quantity: <input type="number" placeholder='1' min="1" max="10" pattern="[1-9]*" value={quantity}  onChange={(e)=>{ let value = parseInt(e.target.value);if(value>10) value = value%10;if(value===0) value=1;e.target.value = value; setquantity(value)}}/>
+                Quantity: <input type="number" placeholder='5' min="1" max="10" pattern="[1-9]*" value={quantity}  onChange={(e)=>{ let value = parseInt(e.target.value);if(value>10) value = value%10;if(value===0) value=1;e.target.value = value; setquantity(value)}}/>
             </div>
             <button className="add-to-cart-button" onClick={cart}>Add to Cart</button>
         </div>

@@ -38,7 +38,7 @@ else
             <h2 className="fail-heading">Payment Failed</h2>
             <p className="fail-message">Sorry, your payment could not be processed.</p>
             <Link to="/" className="continue-shopping-link">Continue Shopping</Link>
-            <p className="instructions-title">This App is in test mode. So you need to follow these instructions to follow for dummy payments.</p>
+            <p className="instructions-title">This app is currently in test mode, therefore you are required to follow these instructions for dummy payments.</p>
             <ul className="instructions-list">
               <li>Put a dummy card number such as 4242 4242 4242 4242.</li>
               <li>The payment is in usd so kindly use united states as the country.</li>
