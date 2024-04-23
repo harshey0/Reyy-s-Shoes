@@ -1,9 +1,9 @@
 import Order from '../models/orderModel.js';
 import User from "../models/userModel.js"
 import mail from './nodemailer.js';
+import cron from 'node-cron';
 
-
-export default async function updateOrderStatusAndFindAffectedUsers() {
+async function updateOrderStatusAndFindAffectedUsers() {
 
     try {
 
@@ -54,7 +54,9 @@ Congratulations! Your order from Reyy's Shoes has been delivered sooner than exp
 Order Details:
 - Order ID: ${order._id.toString().slice(-19)}
 - Delivery Date: ${new Date().toLocaleDateString('en-GB')}
-            
+
+You can find the order invoice by clicking on the specific order under profile section in the app.
+
 We hope you enjoy your purchase. If you have any questions or concerns, feel free to contact us.
             
 Best regards,
@@ -72,8 +74,15 @@ Reyy's Shoes Team`;
       return;
     }
 }
+  const job = cron.schedule('0 14 * * *', async () => {
+    try {
+      await updateOrderStatusAndFindAffectedUsers();
+    } catch (error) {
+      console.error('Error occurred:', error);
+    }
+});
 
-
+export default job;
 
 
 
