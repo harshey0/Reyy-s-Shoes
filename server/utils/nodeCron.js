@@ -74,7 +74,7 @@ Reyy's Shoes Team`;
       return;
     }
 }
-  const job = cron.schedule('0 14 * * *', async () => {
+  const job = cron.schedule('56 20 * * *'  , async () => {
     try {
       await updateOrderStatusAndFindAffectedUsers();
     } catch (error) {
