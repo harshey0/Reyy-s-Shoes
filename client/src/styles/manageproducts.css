@@ -13,6 +13,24 @@
   margin-top: 20px;
 }
 
+.add-product-button {
+  position: absolute;
+  right: 110px;
+  top: 105px;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  padding: 15px 25px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 10px; 
+}
+
+.add-product-button:hover {
+  background-color: #0056b3;
+}
+
+
 .manageproducts th, .manageproducts td {
   border: 1px solid #ddd;
   padding: 8px;

@@ -58,6 +58,7 @@ export default function ManageProducts() {
   return (
     <div className='manageproducts'>
       <h1>Manage Products</h1>
+      <button className="add-product-button">Add New Product</button>
       <table>
         <thead>
           <tr>
