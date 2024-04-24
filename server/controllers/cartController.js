@@ -8,21 +8,15 @@ export  default  async function cart(req,res)
     try {
         const user = await User.findOne({username});
         const cartItems=user.cart;
-        const cartData = await Promise.all(cartItems.map(async (cartItem) => {
-            const product = await Product.findOne({ _id: cartItem.product });
-            return { product, quantity: cartItem.quantity };
-          }));
-      
-          res.send({ cartData });
+        const Items = await User.populate(cartItems, { path: 'product' });
+    
+          res.send({ Items }); 
 
     } catch (error) {
         console.error('Error fetching cart:', error);
         res.send({ message: 'Failed to fetch cart' });
     }
 }
-
-
-
 
 export async function cartadd(req,res)
 {

@@ -36,7 +36,7 @@ export default function Cart(props){
     {
       const response = await axios.post(`${URLS}/data/cart`,{username})
             newloading(false);
-            newItems(response.data.cartData);}catch(error){console.log(error);} }
+            newItems(response.data.Items);}catch(error){console.log(error);} }
 
           async function cartdelete(_id)
           {

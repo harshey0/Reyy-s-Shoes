@@ -1,5 +1,4 @@
 import User from "../models/userModel.js";
-import Product from "../models/productModel.js";
 import Order from "../models/orderModel.js";
 import mail from "../utils/nodemailer.js";
 
@@ -8,8 +7,9 @@ export default async function userOrder(req,res)
 {
     const {name}=req.body;
         try{
-            const user = await User.findOne({ username: name });
-            const orders = await Order.find({ user: user._id });
+            const order = await Order.find().populate('user');
+            const orders = order.filter(order => order.user.username === name);
+            
             if (orders.length === 0) 
                 return res.send([]);
                 else
@@ -22,27 +22,22 @@ export default async function userOrder(req,res)
             console.log(error);
         }
 }
+
 export async function orderDetails(req,res)
 {
     const {id}=req.params;
         try{
-            const order = await Order.findOne({ _id: id });
-            const orderProducts = [];
-            for (const orderItem of order.products) {
-                const product = await Product.findOne({_id:orderItem.product});
+            const order = await Order.findOne({ _id: id }).populate('products.product');
+            const orderProducts = order.products.map(orderItem => ({
+                productId: orderItem.product._id,
+                title: orderItem.product.title,
+                description: orderItem.product.description,
+                quantity: orderItem.quantity,
+                price: orderItem.price,
+                img: orderItem.product.img
+            }));
     
-                    orderProducts.push({
-                        productId: orderItem.product,
-                        title: product.title,
-                        description:product.description,
-                        quantity: orderItem.quantity,
-                        price: orderItem.price,
-                        img: product.img
-                    });
-                
-            }
-    
-            // console.log({ orderProducts ,status  });
+            // console.log({ orderProducts  });
             res.send({ orderProducts});
                 
             
@@ -60,19 +55,18 @@ export async function addOrder(req,res)
     const {name} = req.body;
 
     try {
-        const user = await User.findOne({username:name});
+        const user = await User.findOne({username:name}).populate('cart.product');
         const cartItems = user.cart;
         const orderItems = [];
         let totalAmount = 0;
         for (const cartItem of cartItems) {
-            const product = await Product.findOne({_id:cartItem.product});
-            const price = product.newPrice;
+            const price = cartItem.product.newPrice;
             const quantity = cartItem.quantity;
             const itemTotal = price * quantity;
             orderItems.push({
                 product: cartItem.product,
                 quantity: cartItem.quantity,
-                price: product.newPrice,
+                price: cartItem.product.newPrice,
             });
             totalAmount += itemTotal;
         }

@@ -9,15 +9,7 @@ export default async function comment(req,res)
     try {
         const product = await Product.findOne({ _id:productid});
 
-        if (!product) {
-            return res.send({ message: 'Product not found' });
-        }
-
         const user = await User.findOne({username:username});
-
-        if (!user) {
-            return res.send({ message: 'User not found' });
-        }
 
         
         const newComment = {
@@ -46,9 +38,6 @@ export async function commentdelete(req,res)
     try {
         const product = await Product.findOne({ "comments._id":id});
 
-        if (!product) {
-            return res.send({ message: 'Product not found' });
-        }
         const updatedComments = product.comments.filter(comment => comment._id.toString() !== id);
         // console.log(updatedComments);
 
