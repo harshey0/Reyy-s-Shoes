@@ -1,4 +1,3 @@
-
 import Navigation from "./navigation/navigation";
 import Products from "./products/products";
 import Recommended from "./recommended/recommended";
@@ -12,15 +11,18 @@ import Forget from "./pages/forget";
 import Reset from "./pages/reset";
 import tokenstore from "./session/tokenstore";
 import LoadingPage from "./loading/loading";
-import axios from "axios";
 import Orderdetails from "./pages/orderdetails";
+import SuccessPage from "./stripe/successPage";
+import FailPage from "./stripe/failPage";
+import ManageOrders from "./Admin/orders";
+import ManageProducts from "./Admin/products";
+import ManageUsers from "./Admin/users";
+import axios from "axios";
 import { useState, useEffect } from "react";
 import { BrowserRouter , Route, Routes, Navigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { toast } from "react-toastify"; 
 import 'react-toastify/dist/ReactToastify.css';
-import SuccessPage from "./stripe/successPage";
-import FailPage from "./stripe/failPage";
 
 
 const URLS = process.env.REACT_APP_URLS;
@@ -158,16 +160,22 @@ return(
 
 
          
-         {login ? (<><Route path="/cart" element={<> <Cart name={value.username}/> </>} />
+         {login ? (<>
+         <Route path="/cart" element={<> <Cart name={value.username}/> </>} />
          <Route path="/success/:token" element={<> <SuccessPage name={value.username}/> </>} />
          <Route path="/fail/:token" element={<> <FailPage/> </>} />
          <Route path="/profile" element={<> <Profile  name={value.username} em={value.email} set={session}/> </>} />
          <Route path="/order/:id" element={<> <Orderdetails /> </>} />
-         <Route path="/details/:id" element={<> <Productdetails name={value.username} admin={value.isAdmin}/> </>} /></>):(<>
+         <Route path="/details/:id" element={<> <Productdetails name={value.username} admin={value.isAdmin}/> </>} />
+         <Route path="/manageProducts" element={<> <ManageProducts/> </>} />
+         <Route path="/manageOrders" element={<> <ManageOrders /> </>} />
+         <Route path="/manageUsers" element={<> <ManageUsers /> </>} />
+         </>):(<>
          <Route path="/signin" element={<> <Signin login={()=>newlogin(true)} set={session}/> </>} />
          <Route path="/signup" element={<> <Signup/> </>} />
          <Route path="/forget" element={<> <Forget/> </>} />
-         <Route path="/reset/:id/:token" element={<> <Reset/> </>} /></>)}
+         <Route path="/reset/:id/:token" element={<> <Reset/> </>} />
+         </>)}
 
          <Route path="*" element={login ?<> <Navigate to="/" /></>:<><Navigate to="/signin" /> </>} />
 
