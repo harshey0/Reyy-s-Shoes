@@ -1,3 +1,79 @@
-.manageusers{
-    margin-top: 110px;
+.manageusers {
+  margin-top: 110px;
+  min-height: 74vh;
+}
+
+.manageusers h1 {
+  text-align: center;
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.user-table th,
+.user-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.user-table th {
+  background-color: #f2f2f2;
+}
+
+.user-table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.actionn{
+  width: 250px;
+}
+
+
+.user-table .view-button {
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.user-table .view-button:hover {
+  background-color: #0056b3;
+}
+.user-table .delete-button {
+  border-radius: 5px;
+  margin-left: 5px;
+  background-color: red;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+
+.user-table .edit-delete:hover {
+  background-color: rgb(159, 8, 8);
+}
+
+.pagination {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.pagination-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+.pagination-button:hover {
+  background-color: #0056b3;
 }

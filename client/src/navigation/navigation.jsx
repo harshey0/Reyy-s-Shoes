@@ -80,7 +80,7 @@ export default function Navigation(props) {
 
             {profileMenuOpen && (
               <div className="drop">
-                <Link to="/profile" className="profile-sec dropdown-btn">
+                <Link to="/profile" className="profile-sec dropdown-btn" onClick={()=>setProfileMenuOpen(false)}>
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                     <path fill="#ffffff" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4zm0 2a4 4 0 110-8 4 4 0 010 8zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
                     <path d="M0 0h24v24H0z" fill="none"/>
@@ -120,18 +120,18 @@ export default function Navigation(props) {
               <div className="drop">
 
 
-              <Link to="/manageProducts" className="profile-sec dropdown-btn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+              <Link to="/manageProducts" className="profile-sec dropdown-btn" onClick={()=>setAdminMenuOpen(false)}><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
   <path fill="#ffffff" d="M17,19H5V5H17V19ZM19,4H15.82A3,3,0,0,0,14,2H10A3,3,0,0,0,8.18,4H5A2,2,0,0,0,3,6V18a2,2,0,0,0,2,2H19a2,2,0,0,0,2-2V6A2,2,0,0,0,19,4ZM9,17H7V15H9V17Zm0-4H7V11H9v2Zm0-4H7V7H9V9Zm6,8H11V15h4v2Zm0-4H11V11h4v2Zm0-4H11V7h4v2Z"/>
 </svg>
 Products</Link>
 
 
-                <Link to="/manageOrders" className="profile-sec dropdown-btn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <Link to="/manageOrders" className="profile-sec dropdown-btn" onClick={()=>setAdminMenuOpen(false)}><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
   <path fill="#ffffff" d="M9,6H21V8H9V6Z M9,11H21V13H9V11Z M9,16H21V18H9V16Z M4,6V20H20V6H4Z"/>
 </svg>
 Orders</Link>
                
-                <Link to="/manageUsers" className="profile-sec dropdown-btn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <Link to="/manageUsers" className="profile-sec dropdown-btn" onClick={()=>setAdminMenuOpen(false)}><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
   <path fill="#ffffff" d="M12,2C9.79,2 8,3.79 8,6C8,8.21 9.79,10 12,10C14.21,10 16,8.21 16,6C16,3.79 14.21,2 12,2M5,22H19V20C19,17.79 16.21,16 14,16H10C7.79,16 5,17.79 5,20V22M12,4C13.1,4 14,4.9 14,6C14,7.1 13.1,8 12,8C10.9,8 10,7.1 10,6C10,4.9 10.9,4 12,4M20,14C21.1,14 22,14.9 22,16V20C22,21.1 21.1,22 20,22H18V14H20M4,14H2V20C2,21.1 2.9,22 4,22H8V20H4V14Z" />
 </svg>
 Users</Link>

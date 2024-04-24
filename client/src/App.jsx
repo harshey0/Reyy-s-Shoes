@@ -17,6 +17,7 @@ import FailPage from "./stripe/failPage";
 import ManageOrders from "./Admin/orders";
 import ManageProducts from "./Admin/products";
 import ManageUsers from "./Admin/users";
+import UserProfile from "./Admin/userProfile";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { BrowserRouter , Route, Routes, Navigate } from 'react-router-dom';
@@ -170,6 +171,7 @@ return(
          <Route path="/manageProducts" element={<> <ManageProducts/> </>} />
          <Route path="/manageOrders" element={<> <ManageOrders /> </>} />
          <Route path="/manageUsers" element={<> <ManageUsers /> </>} />
+         <Route path="/profile/:id" element={<> <UserProfile /> </>} />
          </>):(<>
          <Route path="/signin" element={<> <Signin login={()=>newlogin(true)} set={session}/> </>} />
          <Route path="/signup" element={<> <Signup/> </>} />

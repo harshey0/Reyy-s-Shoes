@@ -1,3 +1,72 @@
-.manageproducts{
-    margin-top: 110px;
+.manageproducts {
+  margin-top: 110px;
+  min-height: 74vh;
+}
+
+.manageproducts h1 {
+  text-align: center;
+}
+
+.manageproducts table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.manageproducts th, .manageproducts td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.manageproducts th {
+  background-color: #f2f2f2;
+}
+
+.manageproducts tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.manageproducts .pagination {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.manageproducts .pagination button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+.manageproducts .pagination button:hover {
+  background-color: #0056b3;
+}
+
+.editbutton {
+  border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.editbutton:hover {
+  background-color: #0056b3;
+}
+.deletebutton {
+  margin-left: 5px;
+  background-color: red;
+  border-radius: 5px;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.deletebutton:hover {
+  background-color: rgb(169, 13, 13);
 }

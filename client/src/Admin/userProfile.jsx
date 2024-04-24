@@ -1,40 +1,47 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/profile.css'; 
-import {useNavigate} from "react-router-dom";
+import {useNavigate , useParams} from "react-router-dom";
 import axios from "axios";
 import LoadingPage from '../loading/loading';
 import { Alert } from '@mui/material';
 import tokenstore from '../session/tokenstore';
 import { toast  } from 'react-toastify';
 
-export default function Profile(props) {
+export default function UserProfile(props) {
 
 
-  const name=props.name;
+
+  const { id } = useParams();
   const URLS = process.env.REACT_APP_URLS;
-  const [ovalue,setovalue]=useState({username:props.name, email:props.em})
+  const [ovalue,setovalue]=useState({username:"", email:""})
   const [loading, setloading] = useState(true);
-  const [value, setvalue] = useState({username:props.name, email:props.em ,password:"" ,confirmPassword:""});
+  const [value, setvalue] = useState({username:'', email:'' ,password:"" ,confirmPassword:""});
   const [editMode, setEditMode] = useState(false);
   const [emsg,setemsg]= useState("")
   const [orders, setOrders] = useState([]);
   const navigate= useNavigate();
  
 useEffect(()=>{
-  async function fetch()
+    async function fetch()
   {
     try{
-      const response=await axios.post(`${URLS}/data/userorder`,{name});
+      const response=await axios.post(`${URLS}/user/userAdmin`,{id});
+      const {username , email }= response.data.user;
+      setovalue({username,email})
+      setvalue({username,email})
       setloading(false)
-      setOrders(response.data);
+      setOrders(response.data.orders);
       // console.log(response.data);
     }
     catch(error)
     {
       console.log(error)
     }
-  } fetch();
-},[URLS ,name])
+  } 
+  fetch();
+},[])
+
+
 
   useEffect(() => {
     if (emsg) {
@@ -49,6 +56,7 @@ useEffect(()=>{
 async function update(event){
     event.preventDefault();
     setEditMode(false);
+    const name=ovalue.username;
     
     try{
       const response = await axios.put(`${URLS}/user/update`,{value,name})

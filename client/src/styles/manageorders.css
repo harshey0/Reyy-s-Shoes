@@ -1,3 +1,65 @@
-.manageorders{
-    margin-top: 110px;
+.manageorders {
+  margin-top: 110px;
+  min-height: 74vh;
+}
+
+.manageorders h1 {
+  text-align: center;
+}
+
+.manageorders table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.manageorders th,
+.manageorders td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.manageorders th {
+  background-color: #f2f2f2;
+}
+
+.manageorders tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.manageorders .action-button {
+  margin-left: 5px;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.action{
+  width: 250px;
+}
+
+.manageorders .action-button:hover {
+  background-color: #0056b3;
+}
+
+.manageorders .pagination {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.manageorders .pagination-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+.manageorders .pagination-button:hover {
+  background-color: #0056b3;
 }

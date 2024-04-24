@@ -3,16 +3,10 @@ import Order from "../models/orderModel.js";
 import mail from "../utils/nodemailer.js";
 
 
-export default async function userOrder(req,res)
+export async function order(req,res)
 {
-    const {name}=req.body;
         try{
-            const order = await Order.find().populate('user');
-            const orders = order.filter(order => order.user.username === name);
-            
-            if (orders.length === 0) 
-                return res.send([]);
-                else
+            const orders = await Order.find().populate("user");
                 return res.send(orders);
             
         }
@@ -22,6 +16,87 @@ export default async function userOrder(req,res)
             console.log(error);
         }
 }
+
+export default async function userOrder(req,res)
+{
+    const {name}=req.body;
+        try{
+            const order = await Order.find().populate('user');
+            const orders = order.filter(order => order.user.username === name);
+                return res.send(orders);
+            
+        }
+        catch(error)
+        {
+
+            console.log(error);
+        }
+}
+export async function status(req,res)
+{
+    const {_id}=req.body;
+
+    const estimatedDeliveryDate = new Date();
+    estimatedDeliveryDate.setDate(estimatedDeliveryDate.getDate() + 1);
+        try{
+            const order = await Order.findOne({_id}).populate("user");
+            
+            if (order.status === 'pending') 
+                {order.status="shipped";
+                const subject = "Your Order is Shipped";
+                const message = `Dear ${order.user.username},
+Thank you for placing an order with Reyy's Shoes! Your order has been shipped and is on its way to you.
+                
+Order Details:
+- Order ID: ${order._id.toString().slice(-19)}
+- Estimated Delivery Date: ${estimatedDeliveryDate.toLocaleDateString('en-GB')}
+                
+We will notify you once your order has been delivered.
+                
+If you have any questions or need further assistance, feel free to contact us.
+                
+Best regards,
+Reyy's Shoes Team`;
+
+                
+    
+                mail(order.user.email,message,subject);
+        }
+                else
+                {order.status="delivered";
+                const subject = "Your Order is Delivered Early";
+                const message = `Dear ${order.user.username},
+Congratulations! Your order from Reyy's Shoes has been delivered sooner than expected.
+
+Order Details:
+- Order ID: ${order._id.toString().slice(-19)}
+- Delivery Date: ${new Date().toLocaleDateString('en-GB')}
+
+You can find the order invoice by clicking on the specific order under profile section in the app.
+
+We hope you enjoy your purchase. If you have any questions or concerns, feel free to contact us.
+
+Best regards,
+Reyy's Shoes Team`;
+
+                
+                
+    
+                mail(order.user.email,message,subject);
+            }
+                await order.save();
+
+                res.send("Order status updated");
+            
+        }
+        catch(error)
+        {
+
+            console.log(error);
+        }
+}
+
+
 
 export async function orderDetails(req,res)
 {

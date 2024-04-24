@@ -28,3 +28,19 @@ export default async function products(req,res){
             console.error("error fetching products :", error);
         }}
 
+    export async function productdel(req,res){
+
+        const {id}=req.params;
+    
+        try
+        {
+            await Product.findOneAndDelete({ _id: id });
+            res.send("Product deleted successfully");
+
+
+        }
+        catch(error)
+        {
+            console.log("error deleting product :", error);
+        }}
+
