@@ -41,7 +41,7 @@ else
             <p className="instructions-title">This app is currently in test mode, therefore you are required to follow these instructions for dummy payments.</p>
             <ul className="instructions-list">
               <li>Put a dummy card number such as 4242 4242 4242 4242.</li>
-              <li>The payment is in usd so kindly use united states as the country.</li>
+              <li>The payment is in usd so kindly choose united states as the country.</li>
               <li>Try again as there are many furthur features of the app after the order is placed.</li>
             </ul>
           </div>
