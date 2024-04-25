@@ -100,8 +100,12 @@ function change1(title)
 {
     $('input[type="radio"]').prop('checked', false);
     $("button").css("background-color", "white");
-    var filter=data.filter(item=>item.title.toLowerCase().startsWith(title.toLowerCase()));
-    newdata(filter);
+    const normalizedTitle = title.toLowerCase().replace(/\s+/g, ' '); 
+var filter = data.filter(item => {
+    const normalizedItemTitle = item.title.toLowerCase().replace(/\s+/g, ' '); 
+    return normalizedItemTitle.includes(normalizedTitle);
+});
+newdata(filter);
 }
 
 function change2(name)

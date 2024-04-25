@@ -136,7 +136,7 @@ else
             <p>Your Review:</p>
                 <textarea rows="4" placeholder="Your Comment" name="comment" value={value.comment} onChange={(e)=>newvalue({...value , comment:e.target.value})}></textarea>
                 <div className="rating">
-                Rating: <input type="number" placeholder='1' name="star" min="1" max="5" pattern="[1-5]*" value ={value.star} onChange={(e)=>{ let val = parseInt(e.target.value);if(val>10) val = val%10;if (val > 5 ) { val = 5;}  if(val===0) val=1;e.target.value = val; newvalue({ ...value , star:val})}}/>
+                Rating: <input type="number" placeholder='5' name="star" min="1" max="5" pattern="[1-5]*" value ={value.star} onChange={(e)=>{ let val = parseInt(e.target.value);if(val>10) val = val%10;if (val > 5 ) { val = 5;}  if(val===0) val=1;e.target.value = val; newvalue({ ...value , star:val})}}/>
            
                 <button className="submit-comment" onClick={review}>Submit Review</button> </div>
             </div>
