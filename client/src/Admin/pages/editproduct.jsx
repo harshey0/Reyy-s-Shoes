@@ -12,7 +12,9 @@ export default function EditProduct(props) {
 
 
 const navigate=useNavigate();
+
     const URLS = process.env.REACT_APP_URLS;
+    const [validationError,setValidationError]=useState(null)
     const [loading , setloading] = useState(true)
     const [fileSelected, setFileSelected] = useState(false);
     const [productData, setProductData] = useState({
@@ -81,8 +83,12 @@ const navigate=useNavigate();
   
   async function save (e) {
     e.preventDefault();
-
-    
+    const requiredFields = ['title', 'company', 'color', 'category', 'description'];
+    const missingFields = requiredFields.filter(field => !productData[field]);
+    if (missingFields.length > 0) {
+      setValidationError(`Please provide values for the following fields: ${missingFields.join(', ')}.`);
+      return;}
+      
   try {
     const formData = new FormData();
     if (fileSelected) 
@@ -118,6 +124,12 @@ else
   return (
     <div className="edit-product-container-custom">
       <h2>Edit Product</h2>
+      {validationError && (
+  <div>
+    {alert(validationError)}
+    {setValidationError(null)}
+  </div>
+)}
       <form className="edit-product-form-custom" >
         <div className="input-group-custom">
         <div className="image-container-custom">

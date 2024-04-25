@@ -26,7 +26,7 @@ const {img,_id,star,reviews,prevPrice,newPrice,title}=props.data;
   </section>
   <section className="card-price">
   <div className="price"><del>{prevPrice}</del> {newPrice} </div>
- <div className="mark" ><div class="checkmark-icon"/> Varified</div>
+ <div className="mark" ><div class="checkmark-icon"/> Verified</div>
 
 </section>
 </div>

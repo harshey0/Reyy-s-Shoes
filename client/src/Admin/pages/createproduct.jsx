@@ -3,6 +3,7 @@ import axios from 'axios';
 import '../../styles/adminproduct.css';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { Alert } from '@mui/material';
 
 
 
@@ -10,12 +11,13 @@ export default function CreateProduct(props) {
 
 
 const navigate=useNavigate();
+const [validationError,setValidationError]=useState(null)
   const URLS = process.env.REACT_APP_URLS;
   const [fileSelected, setFileSelected] = useState(false);
   const [productData, setProductData] = useState({
     img: '',
     title: '',
-    prevPrice: '',
+    prevPrice: '0',
     newPrice: 0,
     company: '',
     color: '',
@@ -25,7 +27,7 @@ const navigate=useNavigate();
     description: ''
   });
 
-
+  
 
 
   const handleImageChange = (e) => {
@@ -62,9 +64,14 @@ const navigate=useNavigate();
   async function save (e) {
     e.preventDefault();
     if (!fileSelected) {
-      alert('Please choose an image.');
+      setValidationError('Please choose an image.');
       return;
     }
+    const requiredFields = ['title', 'company', 'color', 'category', 'description'];
+  const missingFields = requiredFields.filter(field => !productData[field]);
+  if (missingFields.length > 0) {
+    setValidationError(`Please provide values for the following fields: ${missingFields.join(', ')}.`);
+    return;}
     
   try {
     const formData = new FormData();
@@ -96,6 +103,13 @@ const navigate=useNavigate();
   return (
     <div className="edit-product-container-custom">
       <h2>Add Product</h2>
+      {validationError && (
+  <div>
+    {alert(validationError)}
+    {setValidationError(null)}
+  </div>
+)}
+
       <form className="edit-product-form-custom" >
         <div className="input-group-custom">
         <div className="image-container-custom">
