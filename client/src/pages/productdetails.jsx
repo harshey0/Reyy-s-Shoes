@@ -19,6 +19,7 @@ export default function Productdetails(props) {
     const navigate=useNavigate();
 
 useEffect(()=> { fetch();
+    window.scrollTo(0, 0);
 },[]
 );
 
