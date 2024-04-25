@@ -24,7 +24,8 @@ const PORT =process.env.PORT;
 
 const app = express ();
 
-app.use('/uploads', express.static(uploadsDirectory));
+app.use('/uploads', express.static(uploadsDirectory, {
+    maxAge: '10y'}));
 app.use(passport.initialize());
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({extended:true, limit: '10mb' }));

@@ -27,8 +27,9 @@ async function fetch()
 {try
 {
    const response = await axios.post(`${URLS}/data/productbyid`,{id});
-   newloading(false)
     newdata(response.data);
+ 
+   newloading(false)
 }
 catch(error)
 {
@@ -61,6 +62,11 @@ async function deletereview(id)
     }}   
 async function cart()
 {
+    if(data.inStock===0)
+    {
+        setemsg("Product Out of stock");
+        return;
+    }
     const value={id , quantity , username:props.name}
     try {
         const response = await axios.post(`${URLS}/data/cartadd`,value);
@@ -119,7 +125,10 @@ else
             <div className="product-name">{data.title}</div>
             <div className="product-company">{data.company} {data.category} ~ <span className='seller'> <span>by </span> {data.seller}</span></div>
             <div className="product-description">{data.description}</div>
-            <div className="product-price">Price: <del>{data.prevPrice}</del> {data.newPrice}</div>
+            <div className="product-price">
+  Price: {data.prevPrice.slice(1)===0 ? <><del>{data.prevPrice}</del> {data.newPrice}</> :<>${data.newPrice}</> }
+</div>
+
             <div className="product-stock">In Stock: {data.inStock}</div>
             <div className="product-rating">Rating:  {data.star}   {data.reviews}</div>
             <div className="product-quantity">

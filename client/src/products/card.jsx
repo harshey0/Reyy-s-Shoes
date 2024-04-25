@@ -8,6 +8,9 @@ export default function Card(props) {
 const navigate=useNavigate();
 const {img,_id,star,reviews,prevPrice,newPrice,title}=props.data;
 
+let check=true;
+if(prevPrice.slice(1)==="0")
+check = false
     const stars=[ ];
     for (var i=0; i < star; i++) {
       stars.push(<AiFillStar key={i} className="rating-star" />)
@@ -25,7 +28,16 @@ const {img,_id,star,reviews,prevPrice,newPrice,title}=props.data;
   <span className="total-reviews">{reviews}</span>
   </section>
   <section className="card-price">
-  <div className="price"><del>{prevPrice}</del> {newPrice} </div>
+  <div className="price">
+  {check ? (
+    <>
+      <del>{prevPrice}</del> {newPrice}
+    </>
+  ) : (
+   <>${newPrice}</> 
+  )}
+</div>
+
  <div className="mark" ><div class="checkmark-icon"/> Verified</div>
 
 </section>

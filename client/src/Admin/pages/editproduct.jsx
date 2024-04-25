@@ -83,7 +83,7 @@ const navigate=useNavigate();
   
   async function save (e) {
     e.preventDefault();
-    const requiredFields = ['title', 'company', 'color', 'category', 'description'];
+    const requiredFields = ['title', 'company', 'color', 'category', 'description' , "prevPrice" , "newPrice" , "inStock" , "description"];
     const missingFields = requiredFields.filter(field => !productData[field]);
     if (missingFields.length > 0) {
       setValidationError(`Please provide values for the following fields: ${missingFields.join(', ')}.`);
