@@ -4,7 +4,6 @@ import {useNavigate , useParams} from "react-router-dom";
 import axios from "axios";
 import LoadingPage from '../../loading/loading';
 import { Alert } from '@mui/material';
-import tokenstore from '../../session/tokenstore';
 import { toast  } from 'react-toastify';
 
 export default function UserProfile(props) {
@@ -65,10 +64,9 @@ async function update(event){
       setvalue({username:ovalue.username, email:ovalue.email ,password:"" ,confirmPassword:""})}
       else
       {
-        const {message , user , token}= response.data;
+        const {message , user}= response.data;
         setvalue({username:user.username, email:user.email ,password:"" ,confirmPassword:""})
         setovalue({username:user.username, email:user.email })
-        tokenstore(token);
         toast(message);
       props.set();
       }
