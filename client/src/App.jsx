@@ -75,6 +75,7 @@ function App(){
 
     async function session(){
         try{
+            newdata(data);
          const res = await axios.post(`${URLS}/user/verify`,{},{
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}` }

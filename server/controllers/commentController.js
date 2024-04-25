@@ -6,6 +6,10 @@ export default async function comment(req,res)
 {
     const { username, star, comment ,productid } = req.body;
 
+    let Star =5;
+    if(star)
+    Star = star;
+
     try {
         const product = await Product.findOne({ _id:productid});
 
@@ -14,7 +18,7 @@ export default async function comment(req,res)
         
         const newComment = {
             name:username,
-            star,
+            star:Star,
             comment,
             user: user._id 
         };

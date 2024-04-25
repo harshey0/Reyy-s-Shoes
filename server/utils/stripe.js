@@ -23,8 +23,8 @@ export default async function stripePayment(req,res)
                     
         }));
     try{
-        const tokens = generateToken("reyy","true","success","2m")
-        const tokenf = generateToken("reyy","true","fail","2m")
+        const tokens = generateToken("reyy","true","success","7s")
+        const tokenf = generateToken("reyy","true","fail","7s")
         // console.log(`${process.env.URLC}/success/${tokens}`);
         const session = await stripe.checkout.sessions.create({
             payment_method_types:["card"], 
