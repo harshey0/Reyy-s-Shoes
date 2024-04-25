@@ -8,10 +8,8 @@ export default function Products(props) {
    <section className="card-container">
 
   
-{props.data.map((data)=><Card data={data}/>)}
+{props.data.slice().reverse().map((data)=><Card data={data}/>)}
 
    </section>
-
-   
   );
 }

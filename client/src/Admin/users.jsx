@@ -60,7 +60,8 @@ export default function ManageUsers() {
 
   const indexOfLastUser = currentPage * usersPerPage;
   const indexOfFirstUser = indexOfLastUser - usersPerPage;
-  const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
+  const reversedUsers = users.slice().reverse();
+  const currentUsers = reversedUsers.slice(indexOfFirstUser, indexOfLastUser);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -84,7 +85,7 @@ export default function ManageUsers() {
           </tr>
         </thead>
         <tbody>
-          {currentUsers.reverse().map(user => (
+          {currentUsers.map(user => (
             <tr key={user._id}>
               <td>{user._id.toString().slice(-19)}</td>
               <td>{user.username}</td>

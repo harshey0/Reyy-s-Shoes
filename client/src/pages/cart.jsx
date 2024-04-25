@@ -84,7 +84,7 @@ export default function Cart(props){
             ) : (
               <>
               <div className="cart-items">
-          {cartItems.map((item, index) => (
+          {cartItems.reverse().map((item, index) => (
             <div key={index} className="cart-item" >
               <img src={item.product.img} className="productimage" onClick={()=>navigate(`/details/${item.product._id}`)}/>
               <div className="productdetails">

@@ -77,7 +77,7 @@ const __dirname = path.dirname(__filename);
                 }
           
                 const { title, prevPrice, newPrice, company, color, category, seller, inStock, description } = req.body;
-
+             
                 const prevprice = "$" + prevPrice;
                 const img = `${process.env.URLS}/uploads/` + req.file.filename;
           
@@ -105,15 +105,15 @@ const __dirname = path.dirname(__filename);
           
           export async function editproduct(req, res, next) {
             const { id } = req.params;
-            try {
-                
-                if (req.file) {
 
+            try{
+                if (req.file) {
                     upload.single('newImg')(req, res, async (err) => {
                         if (err) {
                           console.error('Error uploading file:', err);
                           return res.status(400).send('Error uploading file');
                         }
+                        try {
                         const { title, prevPrice, newPrice, company, color, category, seller, inStock, description } = req.body;
 
                         const prevprice = "$" + prevPrice;
@@ -130,6 +130,12 @@ const __dirname = path.dirname(__filename);
                         inStock,
                         description
                     });
+                    res.status(200).send("Product updated successfully");
+                  } catch (error) {
+                      console.error("Error updating product:", error);
+                      res.status(500).send("Internal Server Error");
+                      next(error);
+                  }
                 }) }
 
 
@@ -147,13 +153,14 @@ const __dirname = path.dirname(__filename);
                         inStock,
                         description
                     });
+
+                res.status(200).send("Product updated successfully");
                 }
                 
-                res.status(200).send("Product updated successfully");
             } catch (error) {
                 console.error("Error updating product:", error);
                 res.status(500).send("Internal Server Error");
                 next(error);
             }
-        }
+          }
         

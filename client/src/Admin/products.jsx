@@ -49,7 +49,8 @@ export default function ManageProducts() {
 
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+  const reversedProducts = products.slice().reverse();
+  const currentProducts =reversedProducts.slice(indexOfFirstProduct, indexOfLastProduct);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -72,7 +73,7 @@ export default function ManageProducts() {
           </tr>
         </thead>
         <tbody>
-          {currentProducts.reverse().map(product => (
+          {currentProducts.map(product => (
             <tr key={product._id}>
               <td>{product._id.toString().slice(-19)}</td>
               <td>{product.title}</td>

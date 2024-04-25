@@ -51,7 +51,8 @@ const calculateTotal = (products) => {
 
   const indexOfLastOrder = currentPage * ordersPerPage;
   const indexOfFirstOrder = indexOfLastOrder - ordersPerPage;
-  const currentOrders = orders.slice(indexOfFirstOrder, indexOfLastOrder);
+  const reversedOrders = orders.slice().reverse();
+  const currentOrders = reversedOrders.slice(indexOfFirstOrder, indexOfLastOrder);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -74,7 +75,7 @@ const calculateTotal = (products) => {
           </tr>
         </thead>
         <tbody>
-          {currentOrders.reverse().map(order => (
+          {currentOrders.map(order => (
             <tr key={order._id}>
               <td>{order._id.toString().slice(-19)}</td>
               <td>{order.user.username}</td>
