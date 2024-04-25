@@ -10,7 +10,6 @@ export default function Products(props) {
   
 {props.data.map((data)=><Card data={data}/>)}
 
-   
    </section>
 
    

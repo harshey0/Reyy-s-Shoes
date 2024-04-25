@@ -84,7 +84,7 @@ export default function ManageUsers() {
           </tr>
         </thead>
         <tbody>
-          {currentUsers.map(user => (
+          {currentUsers.reverse().map(user => (
             <tr key={user._id}>
               <td>{user._id.toString().slice(-19)}</td>
               <td>{user.username}</td>

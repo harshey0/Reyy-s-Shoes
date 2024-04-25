@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/profile.css'; 
+import '../../styles/profile.css'; 
 import {useNavigate , useParams} from "react-router-dom";
 import axios from "axios";
-import LoadingPage from '../loading/loading';
+import LoadingPage from '../../loading/loading';
 import { Alert } from '@mui/material';
-import tokenstore from '../session/tokenstore';
+import tokenstore from '../../session/tokenstore';
 import { toast  } from 'react-toastify';
 
 export default function UserProfile(props) {

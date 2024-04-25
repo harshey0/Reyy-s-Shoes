@@ -1,5 +1,5 @@
 import express from "express";
-import products ,{productByid , productdel} from "../controllers/productsController.js";
+import products ,{addproduct , editproduct, productByid , productdel} from "../controllers/productsController.js";
 import comment , {commentdelete} from "../controllers/commentController.js";
 import cart, {cartadd , cartdelete} from "../controllers/cartController.js";
 import stripePayment from "../utils/stripe.js";
@@ -7,6 +7,8 @@ import userOrder,{addOrder ,status, orderDetails , order} from "../controllers/o
 
 const router = express.Router();
 router.post("/products",products);
+router.post("/addproduct",addproduct);
+router.post("/editproduct/:id",editproduct);
 router.delete("/productdel/:id",productdel);
 router.post("/productbyid",productByid);
 router.post("/comment",comment);

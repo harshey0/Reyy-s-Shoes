@@ -1,0 +1,88 @@
+.edit-product-container-custom {
+ min-height: 69vh;
+  margin: 0 auto;
+  padding: 20px;
+  margin-top: 110px;
+}
+
+.edit-product-form-custom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.image-input-group-custom {
+  flex-basis: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.desc{
+  width: 685px;
+}
+
+#description textarea{
+
+  border-radius: 5px;
+}
+
+.current-image-custom {
+
+  max-width: 100%;
+  height: auto;
+}
+
+.input-group-custom {
+  flex-basis: 48%;
+  margin-bottom: 20px;
+}
+
+.small-input-custom {
+  width: calc(100% - 30px);
+}
+
+.large-input-custom {
+  font-size: medium;
+  width: calc(100% - 30px);
+  height: 100px;
+  border: 1px solid #0056b3;
+}
+
+.file-label-custom {
+  display: flex;
+  width: 130px;
+  align-items: center;
+}
+
+.file-input-custom {
+  display: none;
+}
+
+.file-button-custom {
+  background-color: #007bff;
+  color: #fff;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.file-button-custom:hover {
+  background-color: #0056b3;
+}
+
+.edit-button-custom{
+  position: absolute;
+  top: 110px;
+  right: 50px;
+font-size: medium;
+  padding: 15px 25px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}

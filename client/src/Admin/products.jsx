@@ -3,6 +3,7 @@ import axios from 'axios';
 import "../styles/manageproducts.css";
 import LoadingPage from "../loading/loading";
 import {toast} from "react-toastify"
+import { useNavigate } from 'react-router-dom';
 
 export default function ManageProducts() {
 
@@ -11,6 +12,7 @@ export default function ManageProducts() {
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(8);
+  const navigate = useNavigate();
 
   useEffect(() => {
     
@@ -58,7 +60,7 @@ export default function ManageProducts() {
   return (
     <div className='manageproducts'>
       <h1>Manage Products</h1>
-      <button className="add-product-button">Add New Product</button>
+      <button className="add-product-button" onClick={()=>navigate("/createProduct")}>Add New Product</button>
       <table>
         <thead>
           <tr>
@@ -70,14 +72,14 @@ export default function ManageProducts() {
           </tr>
         </thead>
         <tbody>
-          {currentProducts.map(product => (
+          {currentProducts.reverse().map(product => (
             <tr key={product._id}>
               <td>{product._id.toString().slice(-19)}</td>
               <td>{product.title}</td>
-              <td>{product.newPrice}</td>
+              <td>${product.newPrice}</td>
               <td>{product.company}</td>
               <td>
-                <button className='editbutton'>Edit</button>
+                <button className='editbutton' onClick={()=>navigate(`/editProduct/${product._id}`)}>Edit</button>
                 <button className='deletebutton' onClick={()=>prodel(product._id)}>Delete</button>
               </td>
             </tr>

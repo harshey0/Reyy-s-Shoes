@@ -17,7 +17,9 @@ import FailPage from "./stripe/failPage";
 import ManageOrders from "./Admin/orders";
 import ManageProducts from "./Admin/products";
 import ManageUsers from "./Admin/users";
-import UserProfile from "./Admin/userProfile";
+import UserProfile from "./Admin/pages/userProfile";
+import CreateProduct from "./Admin/pages/createproduct";
+import EditProduct from "./Admin/pages/editproduct";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { BrowserRouter , Route, Routes, Navigate } from 'react-router-dom';
@@ -51,7 +53,12 @@ function App(){
     useHandleCallback();
 
     
-    useEffect(()=>{async function fetch(){
+    useEffect(()=>{
+        
+        fetch(); set(); 
+    },[]);
+
+    async function fetch(){
         try{
          const res = await axios.post(`${URLS}/data/products`);
         newdata(res.data);
@@ -63,10 +70,6 @@ function App(){
             newlogin(await session());
             setLoading(false);
         }; 
-        
-        fetch(); set(); 
-    },[]);
-
 
 
     async function session(){
@@ -172,6 +175,8 @@ return(
          <Route path="/manageOrders" element={<> <ManageOrders /> </>} />
          <Route path="/manageUsers" element={<> <ManageUsers /> </>} />
          <Route path="/profile/:id" element={<> <UserProfile /> </>} />
+         <Route path="/createProduct" element={<> <CreateProduct  set={fetch}/> </>} />
+         <Route path="/editProduct/:id" element={<> <EditProduct  set={fetch}/> </>} />
          </>):(<>
          <Route path="/signin" element={<> <Signin login={()=>newlogin(true)} set={session}/> </>} />
          <Route path="/signup" element={<> <Signup/> </>} />
