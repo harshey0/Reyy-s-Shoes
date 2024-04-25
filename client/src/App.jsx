@@ -21,6 +21,7 @@ import UserProfile from "./Admin/pages/userProfile";
 import CreateProduct from "./Admin/pages/createproduct";
 import EditProduct from "./Admin/pages/editproduct";
 import axios from "axios";
+import $ from 'jquery';
 import { useState, useEffect } from "react";
 import { BrowserRouter , Route, Routes, Navigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
@@ -96,12 +97,15 @@ function App(){
 
 function change1(title)
 {
+    $('input[type="radio"]').prop('checked', false);
+    $("button").css("background-color", "white");
     var filter=data.filter(item=>item.title.toLowerCase().startsWith(title.toLowerCase()));
     newdata(filter);
 }
 
 function change2(name)
 {
+    $('input[type="radio"]').prop('checked', false);
     var filter=[];
     if(name==="All Products")
     filter=data;
@@ -114,7 +118,7 @@ function change2(name)
 function change3(name1,name2)
 {
 
-
+    $("button").css("background-color", "white");
     var filter=[];
     const check = ["$0 - 50","$50 - 100","$100 - 150","Over $150"];
     if (check.includes(name2)) {

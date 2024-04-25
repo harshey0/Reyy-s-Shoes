@@ -1,3 +1,7 @@
+.contain{
+    min-height: 61.15vh;
+}
+
 .card-container{
     display: flex;
     flex-wrap: wrap;
