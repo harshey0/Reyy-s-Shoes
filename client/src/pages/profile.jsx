@@ -158,7 +158,7 @@ async function update(event){
             </tr>
           </thead>
           <tbody>
-          {orders.map(order => {
+          {orders.reverse().map(order => {
          const totalPrice = calculateTotalPrice(order.products);
          const orderId = order._id.toString().slice(-19);
          const formattedDate = new Date(order.createdAt).toLocaleDateString("en-GB");
