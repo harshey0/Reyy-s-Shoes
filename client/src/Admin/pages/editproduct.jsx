@@ -37,8 +37,10 @@ const navigate=useNavigate();
     const fetchProductData = async () => {
       try {
         const response = await axios.post(`${URLS}/data/productbyid`, { id });
+        const updatedProductData = { ...response.data, prevPrice: response.data.prevPrice.slice(1) };
         setloading(false)
-        setProductData(response.data);
+        setProductData(updatedProductData);
+
       } catch (error) {
         console.error('Error fetching product data:', error);
       }
@@ -84,7 +86,7 @@ const navigate=useNavigate();
   try {
     const formData = new FormData();
     if (fileSelected) 
-    {formData.append('newImg', document.getElementById('newImg').files[0]); 
+    formData.append('newImg', document.getElementById('newImg').files[0]); 
     formData.append('title', productData.title);
     formData.append('prevPrice', productData.prevPrice);
     formData.append('newPrice', productData.newPrice);
@@ -94,6 +96,8 @@ const navigate=useNavigate();
     formData.append('seller', productData.seller);
     formData.append('inStock', productData.inStock);
     formData.append('description', productData.description);
+    console.log(formData.get('title'));
+
     const response = await axios.post(`${URLS}/data/editproduct/${id}`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
@@ -103,17 +107,7 @@ const navigate=useNavigate();
     props.set();
     navigate(-1);
   }
-    else
-    {
-      const response = await axios.post(`${URLS}/data/editproduct/${id}`,productData)
-      props.set();
-      toast(response.data);
-      navigate(-1);
-    }
-
-    
-    
-  } catch (error) {
+   catch (error) {
     console.error('Error adding product:', error);
   }
 };
@@ -123,7 +117,7 @@ if(loading) return <LoadingPage/>
 else
   return (
     <div className="edit-product-container-custom">
-      <h2>Add Product</h2>
+      <h2>Edit Product</h2>
       <form className="edit-product-form-custom" >
         <div className="input-group-custom">
         <div className="image-container-custom">

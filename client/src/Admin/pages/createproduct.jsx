@@ -224,7 +224,7 @@ const navigate=useNavigate();
           />
         </div>
       
-        <button type="submit" className="edit-button-custom" onClick={save}>Save Changes</button>
+        <button type="submit" className="edit-button-custom" onClick={save}>Submit</button>
       </form>
     </div>
   );

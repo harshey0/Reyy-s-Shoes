@@ -104,63 +104,44 @@ const __dirname = path.dirname(__filename);
           }
           
           export async function editproduct(req, res, next) {
-            const { id } = req.params;
 
-            try{
-                if (req.file) {
-                    upload.single('newImg')(req, res, async (err) => {
-                        if (err) {
-                          console.error('Error uploading file:', err);
-                          return res.status(400).send('Error uploading file');
-                        }
-                        try {
-                        const { title, prevPrice, newPrice, company, color, category, seller, inStock, description } = req.body;
-
-                        const prevprice = "$" + prevPrice;
-                        const img = `${process.env.URLS}/uploads/` + req.file.filename;
-                    await Product.findByIdAndUpdate(id, {
-                        img,
-                        title,
-                        prevPrice: prevprice,
-                        newPrice,
-                        company,
-                        color,
-                        category,
-                        seller,
-                        inStock,
-                        description
-                    });
-                    res.status(200).send("Product updated successfully");
-                  } catch (error) {
-                      console.error("Error updating product:", error);
-                      res.status(500).send("Internal Server Error");
-                      next(error);
-                  }
-                }) }
-
-
-                else {
-                    const { title, prevPrice, newPrice, company, color, category, seller, inStock, description } = req.body;
-                    const prevprice = "$" + prevPrice;
-                    await Product.findByIdAndUpdate(id, {
-                        title,
-                        prevPrice: prevprice,
-                        newPrice,
-                        company,
-                        color,
-                        category,
-                        seller,
-                        inStock,
-                        description
-                    });
-
-                res.status(200).send("Product updated successfully");
+            const {id}= req.params;
+            try {
+              const product= await Product.findOne({_id:id});
+              upload.single('newImg')(req, res, async (err) => {
+                if (err) {
+                  console.error('Error uploading file:', err);
+                  return res.status(400).send('Error uploading file');
                 }
+                let img = '';
                 
+                if (req.file) {
+                  img = `${process.env.URLS}/uploads/` + req.file.filename;
+                }
+                else {
+                  img = product.img;
+                }
+          
+                const { title, prevPrice, newPrice, company, color, category, seller, inStock, description } = req.body;
+                const prevprice = "$" + prevPrice;
+                await Product.findByIdAndUpdate(id, {
+                  img,
+                  title,
+                  prevPrice: prevprice,
+                  newPrice,
+                  company,
+                  color,
+                  category,
+                  seller,
+                  inStock,
+                  description
+                });
+          
+                res.send("Product updated Successfully");
+              });
             } catch (error) {
-                console.error("Error updating product:", error);
-                res.status(500).send("Internal Server Error");
-                next(error);
+              console.log("error updating product :", error);
+              next(error);
             }
-          }
+                }
         

@@ -175,7 +175,7 @@ return(
          <Route path="/profile" element={<> <Profile  name={value.username} em={value.email} set={session}/> </>} />
          <Route path="/order/:id" element={<> <Orderdetails /> </>} />
          <Route path="/details/:id" element={<> <Productdetails name={value.username} admin={value.isAdmin}/> </>} />
-         <Route path="/manageProducts" element={<> <ManageProducts/> </>} />
+         <Route path="/manageProducts" element={<> <ManageProducts  set={fetch}/> </>} />
          <Route path="/manageOrders" element={<> <ManageOrders /> </>} />
          <Route path="/manageUsers" element={<> <ManageUsers /> </>} />
          <Route path="/profile/:id" element={<> <UserProfile /> </>} />

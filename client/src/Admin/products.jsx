@@ -5,7 +5,7 @@ import LoadingPage from "../loading/loading";
 import {toast} from "react-toastify"
 import { useNavigate } from 'react-router-dom';
 
-export default function ManageProducts() {
+export default function ManageProducts(props) {
 
   const URLS = process.env.REACT_APP_URLS;
   const [loading, setloading] = useState(true);
@@ -38,6 +38,7 @@ export default function ManageProducts() {
         const response = await axios.delete(`${URLS}/data/productdel/${id}`)
         setloading(true)
       await fetch();
+      props.set();
          toast(response.data);
     }
     catch(error)
