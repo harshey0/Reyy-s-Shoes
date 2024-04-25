@@ -25,7 +25,7 @@ export default function Navigation(props) {
     setAdminMenuOpen(true)
     setTimeout(() => {
       setAdminMenuOpen(false)
-    }, 1500);
+    }, 2250);
   }
   
   async function logout() {
