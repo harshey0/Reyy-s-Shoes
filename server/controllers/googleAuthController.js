@@ -9,7 +9,7 @@ export default async function googleAuth(name,email)
     {
         let user = await User.findOne({ email });
         if (user) {
-            return generateToken(user.username,user.isAdmin,user.email,"10d");
+            return generateToken(user.username,user.isAdmin,user.email,"1d");
         }
         else {
             const pass = bcryptjs.hashSync(process.env.JWT_SECRET,10)

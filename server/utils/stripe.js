@@ -37,14 +37,6 @@ export default async function stripePayment(req,res)
             shipping_address_collection: {
                 allowed_countries: ['US'],
             }, 
-            payment_method_data: {
-                card: {
-                    number: "4242424242424242",
-                    exp_month: 12,
-                    exp_year: 2023,
-                    cvc: "123"
-                }
-            }
         })
         // console.log(session.id)
         res.send({sessionid:session.id})
