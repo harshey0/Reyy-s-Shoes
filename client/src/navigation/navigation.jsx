@@ -48,14 +48,14 @@ export default function Navigation(props) {
         <Link to="/" className="icon">
           <h1>Reyy's Shoes</h1>
         </Link>
-        <input
+       {props.is && <input
           type="text"
           className="input-search"
           id="val"
           onChange={search}
           onKeyDown={search}
           placeholder="Enter your search shoes..."
-        />
+        />}
       </div>
 
       <div className="profile-container">
