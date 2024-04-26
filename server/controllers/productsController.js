@@ -12,7 +12,7 @@ export default async function products(req,res){
     catch(error)
     {
         res.json("error fetching products ");
-        console.error("error fetching products :", error);
+        console.error("error fetching products:", error);
     }}
 
     export async function productByid(req,res){
