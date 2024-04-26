@@ -6,13 +6,20 @@ import { useNavigate } from "react-router-dom";
 export default function Card(props) {
 
 const navigate=useNavigate();
-const {img,_id,star,reviews,prevPrice,newPrice,title}=props.data;
+const {img,_id,star,comments,prevPrice,newPrice,title}=props.data;
 
 let check=true;
+const Star = () => {
+  if (comments &&comments.length > 0) {
+      const totalStars = comments.reduce((acc, comment) => acc + comment.star, 0);
+      return Math.round(totalStars / comments.length);
+  }
+  return 0;
+};
 if(prevPrice.slice(1)==="0")
 check = false
     const stars=[ ];
-    for (var i=0; i < star; i++) {
+    for (var i=0; i < Star(); i++) {
       stars.push(<AiFillStar key={i} className="rating-star" />)
       } 
 
@@ -25,7 +32,7 @@ check = false
   <section className="card-reviews">
   
       {stars}
-  <span className="total-reviews">{reviews}</span>
+  <span className="total-reviews">(<span>{comments.length}</span> Reviews)</span>
   </section>
   <section className="card-price">
   <div className="price">

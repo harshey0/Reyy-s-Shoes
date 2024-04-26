@@ -35,8 +35,8 @@ export default function ManageProducts(props) {
   async function prodel(id)
   {
     try{
+      setloading(true)
         const response = await axios.delete(`${URLS}/data/productdel/${id}`)
-        setloading(true)
       await fetch();
       props.set();
          toast(response.data);

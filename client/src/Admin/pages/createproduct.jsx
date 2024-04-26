@@ -73,6 +73,7 @@ const [validationError,setValidationError]=useState(null)
     return;}
     
   try {
+    
     const formData = new FormData();
     formData.append('newImg', document.getElementById('newImg').files[0]); 
     formData.append('title', productData.title);

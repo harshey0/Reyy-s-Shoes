@@ -96,6 +96,13 @@ async function review()
 
     }}
 }
+const calculateAverageStarRating = () => {
+    if (data.comments && data.comments.length > 0) {
+        const totalStars = data.comments.reduce((acc, comment) => acc + comment.star, 0);
+        return (totalStars / data.comments.length).toFixed(1);
+    }
+    return 0;
+};
 const formatTimestamp = (timestamp) => {
     const date = new Date(timestamp);
     const options = {
@@ -130,9 +137,9 @@ else
 </div>
 
             <div className="product-stock">In Stock: {data.inStock}</div>
-            <div className="product-rating">Rating:  {data.star}   {data.reviews}</div>
+            <div className="product-rating">Rating:  {calculateAverageStarRating()} (<span>{data.comments.length}</span> Reviews)  </div>
             <div className="product-quantity">
-                Quantity: <input type="number" placeholder='5' min="1" max={data.inStock} pattern="[1-9]*" value={quantity}  onChange={(e)=>{ let value = parseInt(e.target.value);if(value>10) value = value%10;if(value===0) value=1;e.target.value = value; setquantity(value)}}/>
+                Quantity: <input type="number" placeholder='5' min="1" max={data.inStock} pattern="[1-9]*" value={quantity}  onChange={(e)=>{ let value = parseInt(e.target.value);if(value>data.inStock) value = data.inStock;if(value===0) value=1;e.target.value = value; setquantity(value)}}/>
             </div>
             <button className="add-to-cart-button" onClick={cart}>Add to Cart</button>
         </div>

@@ -8,6 +8,7 @@ import "../styles/cart.css"
 
 export default function Cart(props){
 
+  const email=props.em;
   const username = props.name;
   const [cartItems , newItems]= useState([]);
   const [loading , newloading]= useState(true);
@@ -21,7 +22,7 @@ export default function Cart(props){
     try{
       newloading(true);
       const stripe = await loadStripe(process.env.REACT_APP_STRIPE_KEY)
-      const response = await axios.post(`${URLS}/data/stripe`,cartItems)
+      const response = await axios.post(`${URLS}/data/stripe`,{cartItems,email})
       const {sessionid}=response.data;
       await stripe.redirectToCheckout({sessionId:sessionid})
     }

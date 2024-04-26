@@ -31,14 +31,6 @@ const productSchema= new mongoose.Schema(
             type:String,
             required:true
         },
-        star : {
-            type:Number,
-            default:0
-        },
-        reviews : {
-            type:String,
-            default:"(0 reviews)"
-        },
         prevPrice : {
             type:String,
             required:true

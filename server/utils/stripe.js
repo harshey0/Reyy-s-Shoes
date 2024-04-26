@@ -7,7 +7,8 @@ const stripe = new Stripe(process.env.STRIPE_SECTRET);
 
 export default async function stripePayment(req,res)
 {
-        const items = req.body;
+    const email = req.body.email;
+        const items = req.body.cartItems;
         // console.log(items);
         const lineItems = items.map((item)=>({
             price_data:{currency:"usd",
@@ -24,7 +25,7 @@ export default async function stripePayment(req,res)
         }));
     try{
         const tokens = generateToken("reyy","true","success","1.5m")
-        const tokenf = generateToken("reyy","true","fail","1.5m")
+        const tokenf = generateToken("reyy","true","fail","5m")
         // console.log(`${process.env.URLC}/success/${tokens}`);
         const session = await stripe.checkout.sessions.create({
             payment_method_types:["card"], 
@@ -32,7 +33,10 @@ export default async function stripePayment(req,res)
             line_items:lineItems, 
             success_url:`${process.env.URLC}/success/${tokens}`,
             cancel_url:`${process.env.URLC}/fail/${tokenf}`,
-            
+            customer_email:email,
+            shipping_address_collection: {
+                allowed_countries: ['US'],
+            }, 
         })
         // console.log(session.id)
         res.send({sessionid:session.id})
