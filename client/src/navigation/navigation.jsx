@@ -48,7 +48,7 @@ export default function Navigation(props) {
         <Link to="/" className="icon">
           <h1>Reyy's Shoes</h1>
         </Link>
-       {props.is && <input
+       {window.location.pathname === '/' && <input
           type="text"
           className="input-search"
           id="val"
