@@ -19,7 +19,7 @@ export default async function loginUser(req,res)
                 {const pass = bcryptjs.hashSync(password,10)
 
                 
-                let user = {username,email:email.charAt(0).toLowerCase() + email.slice(1),password:pass};
+                let user = {username,email:email.toLowerCase(),password:pass};
                 await User.create(user);
                 const subject = "Welcome to Reyy's Shoes!";
 const message = `Dear ${username},

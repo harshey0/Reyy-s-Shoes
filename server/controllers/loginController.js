@@ -12,7 +12,7 @@ export default async function loginUser(req,res)
                 if (!emailRegex.test(email)) 
                 return res.send({message:"Please enter a valid email address"});
                 else
-                {const Email = email.charAt(0).toLowerCase() + email.slice(1)
+                {const Email = email.toLowerCase();
                 const user = await User.findOne({email:Email});
 
 
