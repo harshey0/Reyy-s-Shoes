@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 export default function Card(props) {
 
 const navigate=useNavigate();
-const {img,_id,star,comments,prevPrice,newPrice,title}=props.data;
+const {img,_id,comments,prevPrice,newPrice,title}=props.data;
 
 let check=true;
 const Star = () => {
