@@ -119,7 +119,7 @@ const __dirname = path.dirname(__filename);
                   img = `${process.env.URLS}/uploads/` + req.file.filename;
                 }
                 else {
-                  img = product.img;
+                  img = product.img ;
                 }
           
                 const { title, prevPrice, newPrice, company, color, category, seller, inStock, description } = req.body;
