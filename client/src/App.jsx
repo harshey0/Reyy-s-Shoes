@@ -52,11 +52,11 @@ function App(){
     
    
     useHandleCallback();
-
     
     useEffect(()=>{
         
         fetch(); set(); 
+        // console.log(window.location.pathname)
     },[]);
 
     async function fetch(){

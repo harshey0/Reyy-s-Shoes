@@ -1,5 +1,5 @@
 import "../styles/nav.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import tokenstore from "../session/tokenstore.js";
 import { toast } from 'react-toastify';
@@ -12,6 +12,7 @@ export default function Navigation(props) {
   const [adminMenuOpen, setAdminMenuOpen] = useState(false);
 
   let name = props.name.charAt(0).toUpperCase() + props.name.slice(1);
+  
 
   function profilemenu() {
     setProfileMenuOpen(true)
@@ -48,7 +49,7 @@ export default function Navigation(props) {
         <Link to="/" className="icon">
           <h1>Reyy's Shoes</h1>
         </Link>
-       {window.location.pathname === '/' && <input
+       {props.is && <input
           type="text"
           className="input-search"
           id="val"
