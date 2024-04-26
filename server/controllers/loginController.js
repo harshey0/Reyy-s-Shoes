@@ -7,9 +7,10 @@ export default async function loginUser(req,res)
       
         try
             {
-                const {username,password}=req.body;
+                const {email,password}=req.body;
+                const Email = email.charAt(0).toLowerCase() + email.slice(1)
                 
-                const user = await User.findOne({username});
+                const user = await User.findOne({email:Email});
 
 
                 if(!user)

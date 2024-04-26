@@ -16,7 +16,7 @@ export default function Signin(props) {
 
   const navigate = useNavigate();
 
-const [ value, setvalue] = useState({username:"", password:""});
+const [ value, setvalue] = useState({email:"", password:""});
 
 const [emsg,setemsg]= useState("")
 
@@ -46,7 +46,7 @@ function change(e)
 async function handle(event)
 {
   event.preventDefault();
-  if(!value.username.trim()||!value.password.trim())
+  if(!value.email.trim()||!value.password.trim())
   setemsg("Please enter login details");
   else{
   try {
@@ -87,10 +87,10 @@ async function handle(event)
               variant="outlined"
               required
               fullWidth
-              type="username"
-              label="Username"
-              name="username"
-              value={value.username}
+              type="email"
+              label="Email"
+              name="email"
+              value={value.email}
                 onChange={change}
               />
     <TextField 

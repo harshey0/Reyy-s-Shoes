@@ -60,7 +60,7 @@ export async function makeAdmin(req,res){
 
         const message = `Dear ${user.username},
 
-We are delighted to inform you that your account has been upgraded to an admin role at Reyy's Shoes. Please Sign in again to refelect the changes in your account. As an admin, you now have access to advanced features and privileges to enhance your experience on our platform.
+We are delighted to inform you that your account has been upgraded to an admin role at Reyy's Shoes, please Sign in again to refelect the changes in your account. As an admin, you now have access to advanced features and privileges to enhance your experience on our platform.
 
 With your new role, you'll play a crucial role in shaping the direction of our platform and ensuring its continued success. Your insights and contributions will be invaluable in driving growth and fostering a vibrant community.
 
