@@ -8,13 +8,16 @@ export default async function loginUser(req,res)
         try
             {
                 const {email,password}=req.body;
-                const Email = email.charAt(0).toLowerCase() + email.slice(1)
-                
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) 
+                return res.send({message:"Please enter a valid email address"});
+                else
+                {const Email = email.charAt(0).toLowerCase() + email.slice(1)
                 const user = await User.findOne({email:Email});
 
 
                 if(!user)
-                return res.send({message:"This username is not registered"});
+                return res.send({message:"This email address is not registered"});
                 else{
                     
                 
@@ -29,7 +32,7 @@ export default async function loginUser(req,res)
             }
                 else 
                 return res.send({message:"password is incorrect"});}
-            }
+            }}
             catch(error)
             {
 
