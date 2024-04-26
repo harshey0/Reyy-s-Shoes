@@ -14,9 +14,9 @@ async function initialImport()
 
 await connectDb();
         await Product.deleteMany();
-        await User.deleteMany();
         await Product.insertMany(data);
-        await User.insertMany(users);
+        // await User.deleteMany();
+        // await User.insertMany(users);
         console.log("data imported successfully");
     }
     catch(error)
