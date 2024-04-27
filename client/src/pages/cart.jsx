@@ -80,6 +80,7 @@ export default function Cart(props){
                   <p>Total Price: ${getTotalPrice()}</p>
                   <button className="proceed-to-checkout" onClick={stripe}>Proceed to Checkout</button>
                 </div>
+                <p className='instruction'>*Put 4242 4242 4242 4242 for dummy card number.</p>
                 <button className="continue-shopping-button2" onClick={()=>navigate("/")}>Continue Shopping</button> </div>
               )}
             </div>

@@ -8,6 +8,7 @@ import passport from "./utils/passport.js";
 import  job  from './utils/nodeCron.js';
 import path from 'path';
 import { fileURLToPath } from 'url'; 
+// import downloadProductImages from "./utils/multerRemotesync.js"
 
 
 
@@ -38,7 +39,7 @@ app.get("/",(req,res)=> res.send("Reyy's Shoes is running smoothly"));
 app.use("/data", dataRoute);
 app.use("/user",userRoute);
 job.start();
-
+// downloadProductImages();
 
 
 app.listen(PORT,()=>{console.log(`running on port ${PORT}`)});
