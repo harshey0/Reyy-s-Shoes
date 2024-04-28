@@ -175,7 +175,7 @@ return(
          
          {login ? (<>
          <Route path="/cart" element={<> <Cart name={value.username} em={value.email}/> </>} />
-         <Route path="/success/:token" element={<> <SuccessPage name={value.username}/> </>} />
+         <Route path="/success/:tokens/:tokenf" element={<> <SuccessPage name={value.username}/> </>} />
          <Route path="/fail/:token" element={<> <FailPage/> </>} />
          <Route path="/profile" element={<> <Profile  name={value.username} em={value.email} set={session}/> </>} />
          <Route path="/order/:id" element={<> <Orderdetails /> </>} />

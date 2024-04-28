@@ -31,7 +31,7 @@ export default async function stripePayment(req,res)
             payment_method_types:["card"], 
             mode:"payment",
             line_items:lineItems, 
-            success_url:`${process.env.URLC}/success/${tokens}`,
+            success_url:`${process.env.URLC}/success/${tokens}/${tokenf}`,
             cancel_url:`${process.env.URLC}/fail/${tokenf}`,
             customer_email:email,
             shipping_address_collection: {

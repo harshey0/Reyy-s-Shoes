@@ -9,7 +9,7 @@ export default function SuccessPage(props) {
    const name= props.name;
   const URLS = process.env.REACT_APP_URLS;
   const [loading, setloading]=useState(true);
-  const{token}= useParams();
+  const{tokens,tokenf}= useParams();
   const navigate = useNavigate();
 
   useEffect(()=>{
@@ -18,11 +18,11 @@ export default function SuccessPage(props) {
           try {
               const res = await axios.post(`${URLS}/user/verify`,{},{
                   headers: {
-                      Authorization: `Bearer ${token}` }
+                      Authorization: `Bearer ${tokens}` }
                   });
                if(res.data.message && res.data.message==="yes")
                {order(); setloading(false); }
-               else navigate("/");
+               else navigate(`/fail/${tokenf}`);
               }
           
           catch(error)
