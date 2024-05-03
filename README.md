@@ -52,21 +52,3 @@
     - Enable users to log in or register using their social media accounts for added convenience.
 
 These features collectively aim to provide users with a seamless and enjoyable shopping experience while offering administrators the tools they need to manage the platform effectively.
-
-
-  **Installation**
-
-1. Clone the repository:
-   ```
-   git clone https://github.com/your-username/weather-explorer.git
-   ```
-
-2. Navigate to the project directory:
-   ```
-   cd weather-explorer
-   ```
-
-3. Install dependencies:
-   ```
-   npm install
-   ```
